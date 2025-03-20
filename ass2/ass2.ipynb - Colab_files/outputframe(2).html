@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<!-- saved from url=(0106)https://bvo5erzpmln-496ff2e9c6d22116-0-colab.googleusercontent.com/outputframe.html#topic=1&lambda=1&term= -->
+<html theme="light" editor="Default Light" style="overflow-y: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+  // Avoid arrow function syntax to stay ES5 compatible for the sake of googlebot.
+  window.addEventListener("message", function (message) {
+    if (message.source != window.parent) {
+      return;
+    }
+    if (message.data.sandboxed_iframe_evaluation) {
+      // Message is available in scope so evaluated script can get params from
+      // it.
+      window.currentMessage = message;
+      eval.call(null, message.data.sandboxed_iframe_evaluation);
+      delete window.currentMessage;
+    }
+  });
+</script>
+<style>html{--google-orange-600:#e8710a;--google-yellow-600:#f9ab00;--google-blue-600:#1a73e8;--google-blue-700:#1967d2;--paper-amber-50:#fff8e1;--paper-amber-400:#ffca28;--paper-blue-700:#1976d2;--paper-orange-300:#ffb74d;--paper-orange-400:#ffa726;--paper-orange-500:#ff9800;--paper-orange-700:#f57c00;--paper-grey-200:#eee;--paper-grey-300:#e0e0e0;--paper-grey-400:#bdbdbd;--paper-grey-500:#9e9e9e;--paper-grey-600:#757575;--paper-grey-700:#616161;--paper-grey-800:#424242;--paper-red-100:#ffcdd2;--paper-red-900:#b71c1c;--paper-red-a700:#d50000;--md-icon-font:"Google Symbols";--mdc-icon-font:"Google Symbols"}html{--colab-primary-color:#0b57d0;--colab-primary-text-color:#1f1f1f;--colab-secondary-text-color:#444746;--colab-primary-surface-color:#fff;--colab-secondary-surface-color:#f7f7f7;--colab-highlighted-surface-color:var(--paper-grey-200);--colab-border-color:#dadada;--colab-bold-border-color:#747775;--ansi-black:#000;--ansi-red:#8b0000;--ansi-green:#006400;--ansi-yellow:#cdcd00;--ansi-blue:#00e;--ansi-magenta:#cd00cd;--ansi-cyan:#4682b4;--ansi-gray:#e5e5e5;--ansi-bright-black:#7f7f7f;--ansi-bright-red:red;--ansi-bright-green:#00d000;--ansi-bright-yellow:#ff0;--ansi-bright-blue:#5c5cff;--ansi-bright-magenta:#f0f;--ansi-bright-cyan:#0ff;--ansi-bright-gray:#fff;--colab-anchor-color:var(--colab-primary-color);--colab-icon-color:var(--colab-secondary-text-color);--colab-code-font-family:monospace;--colab-chrome-font-family:"Roboto","Noto",sans-serif;--colab-chrome-font-size:14px}html[theme=dark]{--colab-primary-color:#a8c7fa;--colab-primary-text-color:#e3e3e3;--colab-secondary-text-color:#c4c7c5;--colab-primary-surface-color:#383838;--colab-secondary-surface-color:#454545;--colab-highlighted-surface-color:#525252;--colab-border-color:var(--paper-grey-700);--colab-bold-border-color:#c4c7c5;--ansi-black:#3f3f3f;--ansi-red:#ff7a88;--ansi-green:#57bb8a;--ansi-yellow:#ff6;--ansi-blue:#82b1ff;--ansi-magenta:#cd00cd;--ansi-cyan:#99bbd7;--ansi-gray:#e5e5e5;--ansi-bright-green:#0f0}html[theme=dark] body.embedded{--colab-primary-surface-color:#131314;--colab-secondary-surface-color:#202124;--colab-highlighted-surface-color:#202124;--colab-border-color:#3c4043}html[editor=Synthwave84]{--colab-anchor-color:#f97e72;--colab-primary-surface-color:#241b2f;--colab-secondary-surface-color:#49549539;--colab-highlighted-surface-color:#372d4b;--colab-border-color:#34294fb3;--ansi-red:#fe4450;--ansi-green:#72f1b8;--ansi-yellow:#f97e72;--ansi-blue:#03edf9;--ansi-magenta:#ff7edb;--ansi-cyan:#03edf9;--ansi-bright-red:#fe4450;--ansi-bright-green:#72f1b8;--ansi-bright-yellow:#fede5d;--ansi-bright-blue:#03edf9;--ansi-bright-magenta:#ff7edb;--ansi-bright-cyan:#03edf9}html{overflow-y:hidden}body{background:var(--colab-primary-surface-color);color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-size:var(--colab-chrome-font-size);line-height:1.24;font-weight:400;padding:7px 0 10px 5px;margin:0}h1,h2,h3,h4,h5,h6{color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-weight:700;margin-bottom:4px}p,ul{margin-bottom:6px;margin-top:6px}pre{margin-bottom:0;margin-top:0}a{color:var(--colab-anchor-color)}div.output_text,div.output_text pre,div.stream{display:inline}.execute_result>pre{display:block}.output_latex,.output_markdown{max-width:1016px}.output_markdown table,table.dataframe{border-collapse:collapse;border-spacing:0;border:none;table-layout:fixed}.output_markdown table thead,table.dataframe thead{border-bottom:1px solid var(--colab-border-color);font-family:var(--colab-code-font-family);text-align:right}.output_markdown table td,.output_markdown table th,.output_markdown table tr,table.dataframe td,table.dataframe th,table.dataframe tr{border:none;padding:.5em;white-space:normal}.output_markdown table th,table.dataframe th{font-weight:700}.output_markdown table th.col_heading,table.dataframe th.col_heading{text-align:right}.output_markdown table tbody tr:nth-child(odd),table.dataframe tbody tr:nth-child(odd){background:var(--colab-secondary-surface-color)}.output_markdown table tbody tr:hover,.output_markdown table tbody tr:nth-child(odd):hover,table.dataframe tbody tr:hover,table.dataframe tbody tr:nth-child(odd):hover{background-color:var(--colab-highlighted-surface-color)}.output_markdown table td,table.dataframe td{text-align:right}table.dataTable input.text_filter{width:95%}.output_markdown table th,table.dataTable th{text-align:left}.output_image>img{background-color:#fff;max-width:100%;vertical-align:bottom}.output_image>img.unconstrained{max-width:unset}.ansibold{font-weight:700}.ansiblack{color:#000}.ansired{color:darkred}.ansigreen{color:#006400}.ansiyellow{color:brown}.ansiblue{color:#00008b}.ansipurple{color:#9400d3}.ansicyan{color:#4682b4}.ansigray{color:gray}.ansibgblack{background-color:#000}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:#ff0}.ansibgblue{background-color:blue}.ansibgpurple{background-color:#f0f}.ansibgcyan{background-color:cyan}.ansibggray{background-color:gray}.output-error span{font-weight:400!important}.output-error pre{white-space:pre-wrap}.display_data .output_text pre,.execute_result .output_text pre{white-space:pre-wrap}input.raw_input{font-family:var(--colab-code-font-family);width:90%}input{background:var(--colab-primary-surface-color);border:1px solid var(--colab-bold-border-color);color:var(--colab-primary-text-color)}#output-area{display:flow-root}#output-area button.colab{background-color:var(--colab-secondary-surface-color);border:0;box-shadow:0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12),0 3px 3px -2px rgba(0,0,0,.4);color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-size:11px;margin:0 4px 10px;padding:6px;text-transform:uppercase;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}#output-area button.colab:hover{background-color:var(--colab-highlighted-surface-color);cursor:pointer}#output-area .output-error button.error-details{background-color:#42a5f5;color:#fff}#output-area .output-error button.error-details:hover{background-color:#2196f3}#output-area .stdin-widget{-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;display:inline;font-family:var(--colab-code-font-family);margin-right:10px;margin-top:10px;min-width:250px;padding:1px}#output-area .stdin-widget-hidden{visibility:hidden}.error .collapsed .extraneous{display:none}.error .error-expander{-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}.error .error-expander hr{border:0;border-top:1px solid var(--colab-bold-border-color);-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;height:1px;margin:0 10px;padding:0}.error .error-expander hr:first-child{max-width:240px}.error .error-expander svg{fill:var(--colab-icon-color);height:24px;stroke:var(--colab-icon-color);width:24px}.lm-Widget.lm-mod-hidden{display:none!important}audio:focus{outline:none}.string-repr{display:inline}.string-repr .quote{opacity:75%;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.string-repr pre{display:inline;white-space:pre-wrap;word-break:break-all}.string-repr button{color:var(--colab-primary-text-color);cursor:pointer;border:1px solid #767676;border-radius:2px;outline:none}.string-repr button.copy{background:transparent;border:none;margin-left:4px;opacity:0;padding:0;stroke:var(--colab-primary-text-color);-webkit-transition:opacity .2s;transition:opacity .2s}.string-repr button.copy svg{width:14px}.string-repr.hover button.copy,.string-repr:hover button.copy{opacity:1}.string-repr button.more{background-color:transparent;border-color:transparent;display:none;padding:0;-webkit-transition:background-color .2s,border-color .2s;transition:background-color .2s,border-color .2s}.string-repr.large button.more{display:inline}.string-repr.large.truncated button .collapse{display:none}.string-repr.large button .expand{display:none}.string-repr.large.truncated button .expand{display:inline}.string-repr.hover button.more,.string-repr:hover button.more{border-color:#767676}
+/*# sourceMappingURL=outputframe.css.map */
+//@ sourceURL=https://ssl.gstatic.com/colaboratory-static/common/c89d63b7718272c208311f2caaf770da/outputframe.css</style><!--<base href="https://localhost:8080/">--><base href="."><script src="./d3.v5.js.下载" async=""></script><style data-id="immersive-translate-input-injected-css">.immersive-translate-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.immersive-translate-attach-loading::after {
+  content: " ";
+
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-2000%, -50%);
+  z-index: 100;
+}
+
+.immersive-translate-loading-spinner {
+  vertical-align: middle !important;
+  width: 10px !important;
+  height: 10px !important;
+  display: inline-block !important;
+  margin: 0 4px !important;
+  border: 2px rgba(221, 244, 255, 0.6) solid !important;
+  border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+  animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+}
+
+@-webkit-keyframes immersive-translate-loading-animation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes immersive-translate-loading-animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.immersive-translate-input-loading {
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+}
+
+@keyframes immersiveTranslateShadowRolling {
+  0% {
+    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  12% {
+    box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  25% {
+    box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  36% {
+    box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+      100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+      110px 0 var(--loading-color), 100px 0 var(--loading-color);
+  }
+
+  62% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+      120px 0 var(--loading-color), 110px 0 var(--loading-color);
+  }
+
+  75% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      130px 0 var(--loading-color), 120px 0 var(--loading-color);
+  }
+
+  87% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+  }
+
+  100% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.immersive-translate-toast {
+  display: flex;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  right: 0;
+  top: 1%;
+  width: fit-content;
+  padding: 12px 20px;
+  margin: auto;
+  overflow: auto;
+  background: #fef6f9;
+  box-shadow: 0px 4px 10px 0px rgba(0, 10, 30, 0.06);
+  font-size: 15px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.immersive-translate-toast-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.immersive-translate-toast-hidden {
+  margin: 0 20px 0 72px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.immersive-translate-toast-close {
+  color: #666666;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-toast {
+    top: 0;
+    padding: 12px 0px 0 10px;
+  }
+  .immersive-translate-toast-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .immersive-translate-toast-hidden {
+    margin: 10px auto;
+  }
+}
+
+.immersive-translate-modal {
+  display: none;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+}
+
+.immersive-translate-modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 40px 24px 24px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 270px;
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+    "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-content {
+    margin: 50% auto !important;
+  }
+}
+
+.immersive-translate-modal .immersive-translate-modal-content-in-input {
+  max-width: 500px;
+}
+.immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+  text-align: left;
+  max-height: unset;
+}
+
+.immersive-translate-modal-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.immersive-translate-modal-body {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  word-break: break-all;
+  margin-top: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+.immersive-translate-close {
+  color: #666666;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.immersive-translate-close:hover,
+.immersive-translate-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.immersive-translate-modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.immersive-translate-btn {
+  width: fit-content;
+  color: #fff;
+  background-color: #ea4c89;
+  border: none;
+  font-size: 16px;
+  margin: 0 8px;
+  padding: 9px 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.immersive-translate-btn:hover {
+  background-color: #f082ac;
+}
+.immersive-translate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.immersive-translate-btn:disabled:hover {
+  background-color: #ea4c89;
+}
+
+.immersive-translate-cancel-btn {
+  /* gray color */
+  background-color: rgb(89, 107, 120);
+}
+
+.immersive-translate-cancel-btn:hover {
+  background-color: hsl(205, 20%, 32%);
+}
+
+.immersive-translate-action-btn {
+  background-color: transparent;
+  color: #ea4c89;
+  border: 1px solid #ea4c89;
+}
+
+.immersive-translate-btn svg {
+  margin-right: 5px;
+}
+
+.immersive-translate-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #007bff;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-primary-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #ea4c89;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-modal input[type="radio"] {
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.immersive-translate-modal label {
+  cursor: pointer;
+}
+
+.immersive-translate-close-action {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.imt-image-status {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 16px !important;
+}
+.imt-image-status img,
+.imt-image-status svg,
+.imt-img-loading {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 0 0 8px 0 !important;
+  min-height: 28px !important;
+  min-width: 28px !important;
+  position: relative !important;
+}
+.imt-img-loading {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+  background-size: 28px 28px;
+  animation: image-loading-rotate 1s linear infinite !important;
+}
+
+.imt-image-status span {
+  color: var(--bg-2, #fff) !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  font-weight: 500 !important;
+  font-family: "PingFang SC", Arial, sans-serif !important;
+}
+
+@keyframes image-loading-rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+</style><script src="./ldavis.v3.0.0.js.下载" async=""></script></head><body><div id="output-area"><span id="output-header"> </span><div id="output-body"><div class="stream output-id-2"><div class="output_subarea output_text"><pre>WARNING:gensim.models.ldamodel:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+/usr/local/lib/python3.11/dist-packages/scipy/sparse/_sputils.py:44: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+See <a rel="nofollow" target="_blank" href="https://numpy.org/devdocs/release/1.25.0-notes.html">https://numpy.org/devdocs/release/1.25.0-notes.html</a> and the docs for more information.  (Deprecated NumPy 1.25)
+  upcast = np.find_common_type(args, [])
+/usr/local/lib/python3.11/dist-packages/scipy/sparse/_sputils.py:44: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+See <a rel="nofollow" target="_blank" href="https://numpy.org/devdocs/release/1.25.0-notes.html">https://numpy.org/devdocs/release/1.25.0-notes.html</a> and the docs for more information.  (Deprecated NumPy 1.25)
+  upcast = np.find_common_type(args, [])
+/usr/local/lib/python3.11/dist-packages/scipy/sparse/_sputils.py:44: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+See <a rel="nofollow" target="_blank" href="https://numpy.org/devdocs/release/1.25.0-notes.html">https://numpy.org/devdocs/release/1.25.0-notes.html</a> and the docs for more information.  (Deprecated NumPy 1.25)
+  upcast = np.find_common_type(args, [])
+/usr/local/lib/python3.11/dist-packages/scipy/sparse/_sputils.py:44: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+See <a rel="nofollow" target="_blank" href="https://numpy.org/devdocs/release/1.25.0-notes.html">https://numpy.org/devdocs/release/1.25.0-notes.html</a> and the docs for more information.  (Deprecated NumPy 1.25)
+  upcast = np.find_common_type(args, [])
+</pre></div></div><div class="stream output-id-3"><div class="output_subarea output_text"><pre>Topic Modelling Perplexity: -7.127432731249028
+Topic Modelling Coherence Score: 0.4052885263803798
+</pre></div></div><div class="execute_result output-id-4"><div class="output_subarea output_html rendered_html">
+<link rel="stylesheet" type="text/css" href="./ldavis.v1.0.0.css">
+
+
+<div id="ldavis_el17821336237478868002510392258" style="background-color:white;"><div id="ldavis_el17821336237478868002510392258-top" style="width: 1210px"><div style="padding: 5px; background-color: #e8e8e8; display: inline-block; width: 530px; height: 50px; float: left"><label for="ldavis_el17821336237478868002510392258-topic" style="font-family: sans-serif; font-size: 14px">Selected Topic: <span id="ldavis_el17821336237478868002510392258-topic-value"></span></label><input style="width: 50px" type="text" min="0" max="5" step="1" id="ldavis_el17821336237478868002510392258-topic"><button id="ldavis_el17821336237478868002510392258-topic-down" style="margin-left: 5px">Previous Topic</button><button id="ldavis_el17821336237478868002510392258-topic-up" style="margin-left: 5px">Next Topic</button><button id="ldavis_el17821336237478868002510392258-topic-clear" style="margin-left: 5px">Clear Topic</button></div><div id="ldavis_el17821336237478868002510392258-lambdaInput" style="padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: 530px; float: right; margin-right: 30px"><div style="padding: 5px; height: 20px; width: 220px; font-family: sans-serif; float: left" id="ldavis_el17821336237478868002510392258-lambdaZero"><text x="0" y="0" style="font-size: 14px;">Slide to adjust relevance metric:</text><text x="125" y="-5" style="font-size: 10px; position: absolute;">(2)</text></div><div id="ldavis_el17821336237478868002510392258-sliderdiv" style="padding: 5px; height: 40px; width: 250px; float: right; margin-top: -5px; margin-right: 10px"><input style="width: 250px; margin-left: 0px; margin-right: 0px" type="range" min="0" max="1" step="0.01" id="ldavis_el17821336237478868002510392258-lambda" list="ticks"><svg width="250" height="25"><g class="slideraxis" margin-top="-10px" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M8,10V0.5H243V10"></path><g class="tick" opacity="1" transform="translate(8,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.0</text></g><g class="tick" opacity="1" transform="translate(55,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.2</text></g><g class="tick" opacity="1" transform="translate(102,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.4</text></g><g class="tick" opacity="1" transform="translate(149,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.6</text></g><g class="tick" opacity="1" transform="translate(196,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.8</text></g><g class="tick" opacity="1" transform="translate(243,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">1.0</text></g></g></svg></div><label id="ldavis_el17821336237478868002510392258-lamlabel" for="ldavis_el17821336237478868002510392258-lambda" style="height: 20px; width: 60px; font-family: sans-serif; font-size: 14px; margin-left: 80px">λ = <span id="ldavis_el17821336237478868002510392258-lambda-value">1</span></label></div></div><svg width="1210" height="780"><g id="ldavis_el17821336237478868002510392258-leftpanel" class="points" transform="translate(30,60)"><rect x="0" y="0" height="530" width="530" opacity="0" style="fill: rgb(31, 119, 180);"></rect><line x1="0" x2="530" y1="265" y2="265" stroke="gray" opacity="0.3"></line><text x="0" y="260" fill="gray">PC1</text><line x1="265" x2="265" y1="0" y2="530" stroke="gray" opacity="0.3"></line><text x="270" y="7" fill="gray">PC2</text><circle class="circleGuideSmall" r="21.143940861275933" cx="57.279289078048436" cy="551.143940861276" style="fill: none; stroke-dasharray: 2, 2; stroke: rgb(153, 153, 153);"></circle><line class="lineGuideSmall" x1="57.279289078048436" x2="128.1982226951211" y1="572.2878817225519" y2="572.2878817225519" style="stroke: gray; opacity: 0.3;"></line><circle class="circleGuideMedium" r="33.43150591676712" cx="57.279289078048436" cy="563.4315059167672" style="fill: none; stroke-dasharray: 2, 2; stroke: rgb(153, 153, 153);"></circle><line class="lineGuideMedium" x1="57.279289078048436" x2="128.1982226951211" y1="596.8630118335343" y2="596.8630118335343" style="stroke: gray; opacity: 0.3;"></line><circle class="circleGuideLarge" r="47.279289078048436" cx="57.279289078048436" cy="577.2792890780485" style="fill: none; stroke-dasharray: 2, 2; stroke: rgb(153, 153, 153);"></circle><line class="lineGuideLarge" x1="57.279289078048436" x2="128.1982226951211" y1="624.5585781560969" y2="624.5585781560969" style="stroke: gray; opacity: 0.3;"></line><text x="10" y="520" class="circleGuideTitle">Marginal topic distribution</text><text x="138.1982226951211" y="572.2878817225519" class="circleGuideLabelSmall" style="text-anchor: start;">2%</text><text x="138.1982226951211" y="596.8630118335343" class="circleGuideLabelMedium" style="text-anchor: start;">5%</text><text x="138.1982226951211" y="624.5585781560969" class="circleGuideLabelLarge" style="text-anchor: start;">10%</text><text class="txt" x="67.89175125571072" y="446.9387861755362" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">1</text><text class="txt" x="38.6352973356149" y="257.9722959928417" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">2</text><text class="txt" x="491.3647026643851" y="509.9090909090909" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">3</text><text class="txt" x="147.62566456316276" y="333.2562185762473" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">4</text><text class="txt" x="365.83487141910285" y="28.09090909090907" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">5</text><circle class="dot" r="77.51929329347936" cx="67.89175125571072" cy="442.9387861755362" stroke="black" id="ldavis_el17821336237478868002510392258-topic1" style="opacity: 0.6; fill: rgb(214, 39, 40);"></circle><circle class="dot" r="68.15711831279059" cx="38.6352973356149" cy="253.97229599284168" stroke="black" id="ldavis_el17821336237478868002510392258-topic2" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle><circle class="dot" r="68.00909122680754" cx="491.3647026643851" cy="505.9090909090909" stroke="black" id="ldavis_el17821336237478868002510392258-topic3" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle><circle class="dot" r="67.12867720890564" cx="147.62566456316276" cy="329.2562185762473" stroke="black" id="ldavis_el17821336237478868002510392258-topic4" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle><circle class="dot" r="50.66736972173328" cx="365.83487141910285" cy="24.09090909090907" stroke="black" id="ldavis_el17821336237478868002510392258-topic5" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle></g><text x="295" y="30" style="font-size: 16px; text-anchor: middle;">Intertopic Distance Map (via multidimensional scaling)</text><g transform="translate(650,60)" id="ldavis_el17821336237478868002510392258-bar-freqs"><rect x="0" y="540" height="15" width="100" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><text x="105" y="547.5" style="dominant-baseline: middle;">Overall term frequency</text><rect x="0" y="560" height="15" width="50" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><text x="55" y="567.5" style="dominant-baseline: middle;">Estimated term frequency within the selected topic</text><a href="http://vis.stanford.edu/files/2012-Termite-AVI.pdf" target="_blank"><text x="0" y="590" style="dominant-baseline: middle;">1. saliency(term w) = frequency(w) * [sum_t p(t | w) * log(p(t | w)/p(t))] for topics t; see Chuang et. al (2012)</text></a><a href="http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf" target="_blank"><text x="0" y="605" style="dominant-baseline: middle;">2. relevance(term w | topic t) = λ * p(w | t) + (1 - λ) * p(w | t)/p(w); see Sievert &amp; Shirley (2014)</text></a><rect class="bar-totals" x="0" y="11" height="15" width="504.3961259107623" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="28" height="15" width="307.3990397631924" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="45" height="15" width="269.1251002160553" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="62" height="15" width="322.4711877961738" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="79" height="15" width="117.54272350968616" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="96" height="15" width="220.8439063876984" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="113" height="15" width="365.2915133661189" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="130" height="15" width="191.95643255678925" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="147" height="15" width="189.55727771525895" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="164" height="15" width="95.65503857336891" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="181" height="15" width="173.5454699403029" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="198" height="15" width="94.23001107785207" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="215" height="15" width="85.67051976070766" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="232" height="15" width="65.69338746301388" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="249" height="15" width="51.90410440179241" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="266" height="15" width="66.67663934567985" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="283" height="15" width="189.34608755299718" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="300" height="15" width="95.35112257644518" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="317" height="15" width="51.494930686391235" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="334" height="15" width="37.54393789472922" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="351" height="15" width="85.22247156220658" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="368" height="15" width="33.75168941051707" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="385" height="15" width="51.11354703510998" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="402" height="15" width="58.21882016120635" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="419" height="15" width="94.8986749719828" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="436" height="15" width="97.99700991658676" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="453" height="15" width="98.62833178232925" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="470" height="15" width="26.40368803725891" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="487" height="15" width="42.10315134800262" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="504" height="15" width="22.786671407740748" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><text x="-5" class="terms" y="23" cursor="pointer" id="ldavis_el17821336237478868002510392258-termbook" style="text-anchor: end;">book</text><text x="-5" class="terms" y="40" cursor="pointer" id="ldavis_el17821336237478868002510392258-termred_queen" style="text-anchor: end; font-weight: normal;">red_queen</text><text x="-5" class="terms" y="57" cursor="pointer" id="ldavis_el17821336237478868002510392258-termlove" style="text-anchor: end; font-weight: normal;">love</text><text x="-5" class="terms" y="74" cursor="pointer" id="ldavis_el17821336237478868002510392258-termread" style="text-anchor: end; font-weight: normal;">read</text><text x="-5" class="terms" y="91" cursor="pointer" id="ldavis_el17821336237478868002510392258-termfirst" style="text-anchor: end; font-weight: normal;">first</text><text x="-5" class="terms" y="108" cursor="pointer" id="ldavis_el17821336237478868002510392258-termone" style="text-anchor: end;">one</text><text x="-5" class="terms" y="125" cursor="pointer" id="ldavis_el17821336237478868002510392258-termvillain" style="text-anchor: end; font-weight: normal;">villain</text><text x="-5" class="terms" y="142" cursor="pointer" id="ldavis_el17821336237478868002510392258-termseries" style="text-anchor: end;">series</text><text x="-5" class="terms" y="159" cursor="pointer" id="ldavis_el17821336237478868002510392258-termlike" style="text-anchor: end;">like</text><text x="-5" class="terms" y="176" cursor="pointer" id="ldavis_el17821336237478868002510392258-termim" style="text-anchor: end;">im</text><text x="-5" class="terms" y="193" cursor="pointer" id="ldavis_el17821336237478868002510392258-termgood" style="text-anchor: end; font-weight: normal;">good</text><text x="-5" class="terms" y="210" cursor="pointer" id="ldavis_el17821336237478868002510392258-termhero" style="text-anchor: end; font-weight: normal;">hero</text><text x="-5" class="terms" y="227" cursor="pointer" id="ldavis_el17821336237478868002510392258-termend" style="text-anchor: end;">end</text><text x="-5" class="terms" y="244" cursor="pointer" id="ldavis_el17821336237478868002510392258-termwant" style="text-anchor: end;">want</text><text x="-5" class="terms" y="261" cursor="pointer" id="ldavis_el17821336237478868002510392258-termu" style="text-anchor: end;">u</text><text x="-5" class="terms" y="278" cursor="pointer" id="ldavis_el17821336237478868002510392258-termreally" style="text-anchor: end;">really</text><text x="-5" class="terms" y="295" cursor="pointer" id="ldavis_el17821336237478868002510392258-termshatter" style="text-anchor: end;">shatter</text><text x="-5" class="terms" y="312" cursor="pointer" id="ldavis_el17821336237478868002510392258-termworld" style="text-anchor: end;">world</text><text x="-5" class="terms" y="329" cursor="pointer" id="ldavis_el17821336237478868002510392258-termknew" style="text-anchor: end;">knew</text><text x="-5" class="terms" y="346" cursor="pointer" id="ldavis_el17821336237478868002510392258-termreal" style="text-anchor: end;">real</text><text x="-5" class="terms" y="363" cursor="pointer" id="ldavis_el17821336237478868002510392258-termknow" style="text-anchor: end;">know</text><text x="-5" class="terms" y="380" cursor="pointer" id="ldavis_el17821336237478868002510392258-termplot_twist" style="text-anchor: end;">plot_twist</text><text x="-5" class="terms" y="397" cursor="pointer" id="ldavis_el17821336237478868002510392258-termeven" style="text-anchor: end;">even</text><text x="-5" class="terms" y="414" cursor="pointer" id="ldavis_el17821336237478868002510392258-termtime" style="text-anchor: end;">time</text><text x="-5" class="terms" y="431" cursor="pointer" id="ldavis_el17821336237478868002510392258-termreading" style="text-anchor: end;">reading</text><text x="-5" class="terms" y="448" cursor="pointer" id="ldavis_el17821336237478868002510392258-termheart" style="text-anchor: end; font-weight: normal;">heart</text><text x="-5" class="terms" y="465" cursor="pointer" id="ldavis_el17821336237478868002510392258-termget" style="text-anchor: end;">get</text><text x="-5" class="terms" y="482" cursor="pointer" id="ldavis_el17821336237478868002510392258-term2" style="text-anchor: end;">2</text><text x="-5" class="terms" y="499" cursor="pointer" id="ldavis_el17821336237478868002510392258-termsave" style="text-anchor: end;">save</text><text x="-5" class="terms" y="516" cursor="pointer" id="ldavis_el17821336237478868002510392258-termplease" style="text-anchor: end;">please</text><g x="xaxis" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,0.5H530.5"></path><g class="tick" opacity="1" transform="translate(0.5,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-3" dy="0em">0</text></g><g class="tick" opacity="1" transform="translate(96.86363636363636,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-3" dy="0em">20</text></g><g class="tick" opacity="1" transform="translate(193.22727272727272,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-3" dy="0em">40</text></g><g class="tick" opacity="1" transform="translate(289.59090909090907,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-3" dy="0em">60</text></g><g class="tick" opacity="1" transform="translate(385.95454545454544,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-3" dy="0em">80</text></g><g class="tick" opacity="1" transform="translate(482.3181818181818,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-3" dy="0em">100</text></g></g><text x="265" y="-30" class="bubble-tool" style="text-anchor: middle; font-size: 16px;">Top-30 Most Relevant Terms for Topic 1 (26.9% of tokens)</text><rect class="overlay" x="0" y="11" height="15" width="253.65928169491366" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="28" height="15" width="159.8907087399972" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="45" height="15" width="130.0895882342038" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="62" height="15" width="127.09103427720534" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="79" height="15" width="94.83299625237213" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="96" height="15" width="81.12194526771475" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="113" height="15" width="78.64747053261621" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="130" height="15" width="72.87141437807601" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="147" height="15" width="55.2673423019558" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="164" height="15" width="42.20210740009645" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="181" height="15" width="41.12065749065801" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="198" height="15" width="40.970459762614965" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="215" height="15" width="38.66814240939716" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="232" height="15" width="34.759633983122455" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="249" height="15" width="34.43544277295554" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="266" height="15" width="33.416882580285304" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="283" height="15" width="31.73970088466647" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="300" height="15" width="31.129860808921208" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="317" height="15" width="29.961339295964557" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="334" height="15" width="26.97864567268286" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="351" height="15" width="23.62722949814445" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="368" height="15" width="23.362098199088408" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="385" height="15" width="23.214395886254184" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="402" height="15" width="22.040021967944618" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="419" height="15" width="21.87399017371333" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="436" height="15" width="20.8199175958686" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="453" height="15" width="20.060352607593547" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="470" height="15" width="20.02563350178017" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="487" height="15" width="20.022959467377444" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><rect class="overlay" x="0" y="504" height="15" width="20.017950249689825" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect></g></svg></div>
+<script type="text/javascript">
+
+var ldavis_el17821336237478868002510392258_data = {"mdsDat": {"x": [-0.06229769408131041, -0.07410378872465245, 0.10858978793824062, -0.030122019976622966, 0.05793371484434518], "y": [-0.05314812069668968, 0.023107062983812612, -0.07855903958094251, -0.007272870195006879, 0.11587296748882646], "topics": [1, 2, 3, 4, 5], "cluster": [1, 1, 1, 1, 1], "Freq": [26.883000147705882, 20.781675785448975, 20.69150441654226, 20.159246883650475, 11.484572766652411]}, "tinfo": {"Term": ["daughter_pirate", "shatter", "book", "king", "first", "villain", "love", "red_queen", "song", "world", "que", "rose", "good", "queen", "one", "think", "end", "read", "ive", "2018", "first_thought", "save", "nostalgia", "back", "hero", "hero_sacrifice", "omg", "get_girl", "gacha", "evil", "please", "chapter", "lead", "understand", "first", "queenquot", "w", "2", "interest", "villin", "world_burn", "caught", "shot", "enough", "happy", "dark", "well", "killed", "remember", "used", "manwha", "three", "appreciate", "main", "choose", "female", "real", "absolutely", "plot_twist", "sacrifice", "font", "u", "book", "red_queen", "going", "love", "knew", "read", "want", "definitely", "really", "saw", "bit", "mare", "one", "series", "im", "end", "hero", "like", "villain", "good", "world", "even", "bad", "shatter", "time", "know", "reading", "heart", "save", "get", "crave_series", "queen", "daughter_pirate", "freaking", "young", "first_thought", "school_good", "king", "evil", "herebrits", "pure", "horsemenbrbrbrbrits", "goodcoming", "warthe", "filled", "trait", "loyal", "dynasty", "protagonist", "fav", "total", "add", "clear", "2019", "assistant_villain", "sight", "fit", "four", "heartfelt", "funny", "pretty", "broken", "omg", "shatter", "right", "warner", "true", "good", "one", "it39s", "reading", "love", "ive", "read", "like", "book", "also", "last", "story", "song", "villain", "would", "red_queen", "heart", "series", "upon_broken", "get_girl", "im", "que", "x", "little", "ser", "e", "o", "her\u00f3is", "se", "remind", "trope", "ending", "s\u00e3o", "\u00e9", "vil\u00e3o", "vil\u00f5es", "nem", "vezes", "her\u00f3i", "doesn39t", "lip", "somethin39", "black", "sheer", "iron", "okay", "put", "ignite", "ahhhh", "ace", "version", "um", "thing", "everything", "villain", "care", "get_girl", "girl", "never", "got_girl", "still", "like", "hero", "upon_broken", "heart", "fall", "don39t", "movie", "video", "i39m", "one", "think", "got", "get", "love", "book", "know", "series", "read", "red_queen", "actually", "it39s", "stop", "fourth_wing", "oh", "brdaughter", "mebronce", "soooo", "burn", "back", "full", "barrow", "shelf", "r", "thinking", "cant", "seems", "flame", "suggestion", "excited", "continue", "gacha_kid", "let_world", "recommendation", "biggest", "would_sacrifice", "big", "walking", "motion", "slowly", "worm", "honey", "brings", "gacha_phase", "heard", "100", "think", "thought", "loved", "kind", "world", "red_queen", "actually", "book", "maven", "series", "good", "read", "also", "upon_broken", "amazing", "song", "ever", "reading", "villain", "im", "know", "heart", "get", "video", "would", "i39m", "one", "like", "shatter", "giving", "talk", "y39all", "wise", "bro", "hannibal", "feeling", "needed", "plot", "sorry", "rose", "respect", "addition", "religion", "making", "nostalgia", "recognized", "reminds", "thorn", "court", "hero_sacrifice", "yesss", "court_thorn", "vibe", "sacrifice_everything", "songbird", "game", "loses", "scenario", "90", "2018", "quotthe_hero", "sacrifice_world", "man", "already", "list", "song", "gacha", "shatter", "world", "aaron_warner", "love", "read", "save", "page", "end", "get", "much", "fact", "villain", "made", "series", "would", "know", "ive", "i39m", "good", "ever", "don39t", "red"], "Freq": [19.0, 39.0, 104.0, 19.0, 24.0, 75.0, 55.0, 63.0, 21.0, 19.0, 6.0, 4.0, 36.0, 6.0, 45.0, 15.0, 17.0, 66.0, 9.0, 5.0, 6.0, 8.0, 4.0, 6.0, 19.0, 4.0, 10.0, 18.0, 6.0, 6.0, 4.154668919746944, 4.069758167378638, 3.9872189267827762, 2.5578392717034952, 19.682319976907422, 2.5217797537345974, 2.4917239767758215, 4.156263556973243, 1.758475570385233, 1.758469437165132, 1.7583071112731217, 1.7582947085391392, 1.7582866672061177, 1.7582793073419964, 1.7581019891341834, 1.7564134454934477, 1.756200554609048, 1.7510318855891422, 4.103885039546776, 1.739872423468217, 1.7335586141085373, 1.7076235432950513, 1.7025032585670545, 3.3156212399675673, 3.3032155075220895, 1.6742017188509863, 5.599341554707763, 3.284797038677008, 4.848737362074952, 2.55792023020883, 3.6752874412518914, 7.1469786887266205, 52.64626601215189, 33.184864078112625, 4.098210856896755, 26.99972585992909, 6.218391174634153, 26.377384472627522, 7.214263656874473, 3.7521789401910586, 6.93557940345544, 4.0709381989260995, 3.357197384976776, 4.043084384277415, 16.836630149903062, 15.124255814317664, 8.758927950963415, 8.025463518931486, 8.503302969599332, 11.470580477764411, 16.32305992186374, 8.534476082966757, 6.460914507511949, 4.8180821650716235, 4.137354703107629, 6.587485089270399, 4.574344182026241, 4.9037646128224335, 4.539884753034842, 4.321114972727445, 4.1557085687009785, 4.163469409123189, 3.13783225216732, 5.61809287068421, 16.013067821173845, 2.4016343134380937, 2.380687120620146, 5.275637549718439, 3.4697177823563017, 14.72785375091463, 5.062558912230042, 1.6515051544569723, 1.6514811322052068, 1.6514560563459078, 1.6514378289355771, 1.6514349841952365, 1.6514262392527077, 1.6514099083359375, 1.6512674605973985, 1.6506172793884315, 1.6475806771159254, 1.6430576453350565, 1.635947269533996, 1.6309469535404193, 1.587860410980288, 1.589517419548336, 3.100018488508947, 1.5817708755185051, 3.152379200661834, 2.41391853439351, 0.9007634280558324, 0.9007606886762451, 3.1186112899323755, 3.080298959189117, 6.1557968395692555, 17.847000694917075, 3.891095261396296, 3.8498709701517524, 3.1532629666609937, 13.25498627872415, 15.1330206351646, 5.359441914381726, 7.699874273409721, 15.525530742835283, 4.444941340581683, 15.62012615585741, 10.90540439187462, 20.067125402673664, 6.269469713480253, 3.1391930916576807, 3.9005789935274793, 4.888872553206815, 7.489671984487974, 4.484532540149191, 6.387946616301322, 4.531644811734345, 5.426095655613538, 4.505063979434391, 3.9090470479963, 3.9453033689985473, 5.8932833735890995, 3.788997410604743, 3.0297309985771923, 3.0178483586003177, 3.0158000110105476, 3.0163845338401183, 3.012421276033014, 3.0036584689619965, 2.356929696009167, 2.3567318478295958, 2.343088925533949, 2.308145328338023, 2.3010888831381107, 2.3001130699003745, 2.2943960337973683, 2.291633712342189, 2.289414581700276, 2.2898362941508994, 2.2873922502019868, 1.620574124156677, 1.6205524091125776, 1.6205223017809036, 1.6205107623854886, 1.6203430215375914, 1.6202871079216254, 1.620192799590006, 1.6199111334382834, 1.6198807113958256, 1.619650552909092, 1.613758117995777, 3.73174480515645, 4.1417072139468525, 4.047038433575968, 34.32411713169181, 2.543439685259865, 8.632129082735927, 6.634890943909368, 4.558563886979789, 2.6819371874890936, 2.9157167365037204, 11.187152642535011, 6.973296093080574, 6.4381526443699375, 6.127337560214605, 4.589776902541615, 4.340926273693334, 3.745261423524099, 4.15452391553078, 4.737373322959224, 7.321793387674614, 4.653920834931791, 3.6756914576025674, 4.538675004656747, 5.934007788273599, 7.1432667717864415, 4.067290282336611, 4.4196992221691715, 4.675964017475232, 4.559252054560905, 3.3177832615295615, 3.18239258416045, 3.0821426459557726, 3.6251424460552224, 2.386029576479434, 2.385932481625888, 2.3858699320991823, 2.3851980357126417, 4.570394573014675, 5.085983780522234, 1.640397825079143, 1.6403972118484889, 1.6403460070888818, 1.6402134470625138, 1.640048794631921, 1.638836131013682, 1.6231022677143814, 1.6197108977876717, 1.6171105954045921, 1.5608142838826693, 1.5185433750580677, 2.385009569491653, 2.3860829275463304, 2.38461178720744, 1.3495072651353448, 3.15346075778262, 0.8947407268118204, 0.8947358209665885, 0.894727746762978, 0.8947270313272149, 0.8947172196367513, 0.8947131314323915, 2.2342513102362536, 2.386006478124801, 3.124601101155382, 1.6292075921053744, 7.600182856297397, 4.267950032114191, 3.5050318196038392, 3.0991600010138467, 7.627142928768833, 17.97431702878145, 5.723195023633012, 23.106833568968312, 4.873366901098016, 11.16831283963196, 10.268021557760779, 13.405478835166566, 5.970822467554074, 6.385322237035301, 3.8394395774713375, 6.386366364428806, 3.0694522463921587, 5.912103997154051, 12.381861145294545, 5.506530821892546, 5.071107622497629, 5.136096989565218, 5.008364314905339, 3.8773683022402383, 4.868811006159404, 4.227317368981689, 6.267957657452426, 5.006691012860855, 4.762294885665814, 2.0145593047223067, 1.996338220136939, 1.9946389674605813, 1.9326694628706416, 2.3119692809273253, 1.3852034856574313, 1.3850842398555816, 1.3847023970975103, 1.3814946384473632, 1.3708414700442277, 3.2150216976680652, 1.365902318247693, 1.3651209321828384, 1.3585790655710137, 1.356692210368504, 2.7147005496945322, 1.3417078807268976, 1.3145218175718074, 1.2912734277992801, 1.2908436072381206, 2.600396228660974, 1.203471486226809, 2.0138773677929787, 1.9702466797275373, 2.310247669663121, 0.7555949097440066, 0.7555892036460665, 0.7555785483815457, 0.7555719106757787, 0.7555704550385491, 3.020535055478664, 1.8091423408012521, 1.8260029286063368, 2.014968746362251, 1.3852935022637103, 1.6598520700814612, 6.652994383070177, 2.7666344254196265, 8.199020862090155, 4.157398678196126, 2.019443491657051, 6.367716968497491, 6.849028891664056, 2.644964114200328, 2.600855511319661, 3.361540551553657, 3.559680493836445, 2.5740233426878336, 1.942990862436404, 5.2965095718941475, 2.0345783924136884, 3.7016507725069507, 2.8112449320170634, 2.6900574265540818, 2.1770715359770705, 2.2612108613778856, 2.2676207890312186, 2.044959065527441, 2.030868962948728, 2.01526010671013], "Total": [19.0, 39.0, 104.0, 19.0, 24.0, 75.0, 55.0, 63.0, 21.0, 19.0, 6.0, 4.0, 36.0, 6.0, 45.0, 15.0, 17.0, 66.0, 9.0, 5.0, 6.0, 8.0, 4.0, 6.0, 19.0, 4.0, 10.0, 18.0, 6.0, 6.0, 4.729309160097136, 4.713098806371427, 4.717396647521517, 3.1306181674816678, 24.395659596349958, 3.127753538209785, 3.1180958801588616, 5.480010724714114, 2.331190633213575, 2.3311900380043866, 2.331163786244833, 2.3311669698981694, 2.331166908487131, 2.33116092836325, 2.3311325214064476, 2.331022597640429, 2.3309212003187882, 2.3305831890187094, 5.468622036203817, 2.3299110057958123, 2.3294921007891753, 2.3271195158830094, 2.3267597044904056, 4.55888509906732, 4.548285809271178, 2.3250073313828237, 7.792138053623045, 4.670781067693803, 7.005067613503543, 3.760327173718815, 5.4316099411635355, 10.77254997018333, 104.68598839657331, 63.799800705568224, 6.207789166510664, 55.85615287503033, 10.687627123590634, 66.9279823727908, 13.634476643267032, 6.077231090960228, 13.838547788726006, 6.95166963422682, 5.41220336155142, 6.950717357281089, 45.83552774084306, 39.84001430423928, 19.852932534095437, 17.780673912599703, 19.5571721104976, 39.342076506940536, 75.81521975523222, 36.01887111968551, 19.78985562907353, 10.608472026154901, 7.7028056601297346, 39.298244586471114, 12.083151354212639, 17.68768277706174, 19.69595140927945, 20.33900205815952, 8.738389902415637, 20.470031124634374, 3.7363673323699387, 6.739431065058751, 19.65140461252583, 2.984679102553367, 2.983452244745424, 6.723379992126292, 4.479668139926067, 19.44198742905159, 6.781825518986456, 2.233939912455164, 2.233938149410608, 2.2339306742246223, 2.233924476531797, 2.2339255583685533, 2.2339312374237723, 2.233927876659015, 2.2339203665001284, 2.233882201029659, 2.2333011825149125, 2.233832149268606, 2.2314233300418067, 2.2306268366704027, 2.2329633191316574, 2.2367228301881825, 4.364758796091868, 2.232829612048564, 4.534670926791547, 3.7306547789889155, 1.483142419647489, 1.483140408903086, 5.205156874999385, 5.152646583571673, 10.627685793233505, 39.298244586471114, 6.765625725356672, 6.759831329650768, 5.280326402803955, 36.01887111968551, 45.83552774084306, 11.060064023387595, 19.69595140927945, 55.85615287503033, 9.332795402946116, 66.9279823727908, 39.342076506940536, 104.68598839657331, 17.949954210881337, 6.133318624043912, 8.93915924158819, 21.963278037373033, 75.81521975523222, 19.139968497179947, 63.799800705568224, 20.33900205815952, 39.84001430423928, 20.224960251049236, 18.03538774142211, 19.852932534095437, 6.6252982462367624, 4.416450094813487, 3.6843742168948994, 3.6769372679493944, 3.678414275116311, 3.6797676654813616, 3.6765035150823673, 3.678191137126244, 2.942499635922728, 2.9424927079509153, 2.9429269943419465, 2.9421993051042397, 2.941387022494087, 2.9414646563350404, 2.941294408382035, 2.9413600970993627, 2.940421874359415, 2.9420411629533643, 2.94831294894971, 2.2057984548864478, 2.2057966089597283, 2.205782598891841, 2.2057834927577833, 2.2057891252135238, 2.2057926571804596, 2.205779161927355, 2.2057656735297853, 2.2057668635268746, 2.2056680135195914, 2.2058830080543372, 5.160573356017304, 5.9087545612518175, 5.934806228238598, 75.81521975523222, 3.7248836988776772, 18.03538774142211, 14.211291526019822, 9.09560258930081, 4.437307760465079, 5.232193728779979, 39.342076506940536, 19.5571721104976, 20.224960251049236, 20.33900205815952, 11.708692245245055, 10.957256440099014, 8.297361901863622, 10.466204289206107, 14.563984957420399, 45.83552774084306, 15.615043016254388, 10.56402921782353, 20.470031124634374, 55.85615287503033, 104.68598839657331, 17.68768277706174, 39.84001430423928, 66.9279823727908, 63.799800705568224, 14.058494786587623, 11.060064023387595, 3.7147879735668163, 4.4747573941496395, 2.969643859520638, 2.96964018445474, 2.9696371595970605, 2.969623627293477, 5.99439112717419, 6.72083849309587, 2.22388723304634, 2.2238880253761213, 2.223887432554982, 2.223882356341685, 2.2238636159738525, 2.2238995268938724, 2.2243123284881294, 2.2244840883957373, 2.2240246163453103, 2.211472380307803, 2.204900602389735, 3.5993831694559324, 3.7688636332724244, 3.7684785720493506, 2.2109622263337654, 5.190387442838073, 1.478123786586684, 1.478122412104072, 1.478118061011876, 1.4781196403608223, 1.4781155217126354, 1.4781174006686535, 3.724617103996096, 4.296247779276438, 5.809447210207086, 2.854916916305466, 15.615043016254388, 8.257038474069425, 6.6811465623334705, 6.10900111818155, 19.78985562907353, 63.799800705568224, 14.058494786587623, 104.68598839657331, 11.351229207358232, 39.84001430423928, 36.01887111968551, 66.9279823727908, 17.949954210881337, 20.224960251049236, 8.935587537555447, 21.963278037373033, 6.35166465897464, 19.69595140927945, 75.81521975523222, 19.852932534095437, 17.68768277706174, 20.33900205815952, 20.470031124634374, 10.466204289206107, 19.139968497179947, 14.563984957420399, 45.83552774084306, 39.342076506940536, 39.298244586471114, 2.6218230479615077, 2.6252026616429713, 2.6252296546724345, 2.6356495967796776, 3.3079595395288175, 1.9919898311408955, 1.9920064219656273, 1.9920699187787183, 1.9925534228703183, 1.9944283723350074, 4.6906069726910635, 1.9952805860928193, 1.9956746087855017, 1.9965276980590763, 1.9971464206247753, 4.028544659619607, 1.9993552246162367, 2.003940797177206, 2.007872620598909, 2.007949195026935, 4.05923957470944, 2.0265917105147375, 3.4212034537011125, 3.422313283276406, 4.044915688528441, 1.3621941199697059, 1.3621927970080256, 1.362193423535668, 1.3621963557336798, 1.3621958013658577, 5.462584389259491, 3.4022158184094273, 3.4529813689544246, 4.167138079858169, 2.7375840351258613, 3.4402154510512557, 21.963278037373033, 6.940184578510491, 39.298244586471114, 19.78985562907353, 4.864217960253368, 55.85615287503033, 66.9279823727908, 8.738389902415637, 8.546235830510728, 17.780673912599703, 20.470031124634374, 9.397443662516428, 4.93495233140764, 75.81521975523222, 5.808447932386784, 39.84001430423928, 19.139968497179947, 17.68768277706174, 9.332795402946116, 14.563984957420399, 36.01887111968551, 6.35166465897464, 10.957256440099014, 6.447955652394254], "Category": ["Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5"], "logprob": [30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, -5.6412, -5.6618, -5.6823, -6.1262, -4.0857, -6.1404, -6.1524, -5.6408, -6.501, -6.501, -6.5011, -6.5011, -6.5011, -6.5011, -6.5012, -6.5021, -6.5023, -6.5052, -5.6535, -6.5116, -6.5152, -6.5303, -6.5333, -5.8668, -5.8705, -6.5501, -5.3428, -5.8761, -5.4867, -6.1262, -5.7638, -5.0987, -3.1018, -3.5633, -5.6549, -3.7696, -5.2379, -3.7929, -5.0893, -5.7431, -5.1287, -5.6615, -5.8543, -5.6684, -4.2418, -4.3491, -4.8953, -4.9828, -4.9249, -4.6256, -4.2728, -4.9213, -5.1996, -5.493, -5.6453, -5.1802, -5.5449, -5.4754, -5.5525, -5.6019, -5.6409, -5.6391, -5.6644, -5.082, -4.0346, -5.9318, -5.9406, -5.1449, -5.5639, -4.1182, -5.1861, -6.3063, -6.3063, -6.3063, -6.3063, -6.3063, -6.3063, -6.3064, -6.3064, -6.3068, -6.3087, -6.3114, -6.3158, -6.3188, -6.3456, -6.3446, -5.6766, -6.3494, -5.6598, -5.9267, -6.9125, -6.9125, -5.6706, -5.683, -4.9906, -3.9261, -5.4493, -5.4599, -5.6595, -4.2236, -4.0911, -5.1291, -4.7668, -4.0655, -5.3162, -4.0594, -4.4187, -3.8089, -4.9723, -5.664, -5.4469, -5.221, -4.7945, -5.3073, -4.9536, -5.2969, -5.1168, -5.3028, -5.4447, -5.4355, -5.0298, -5.4715, -5.6952, -5.6991, -5.6998, -5.6996, -5.7009, -5.7038, -5.9463, -5.9464, -5.9522, -5.9672, -5.9703, -5.9707, -5.9732, -5.9744, -5.9753, -5.9752, -5.9762, -6.3209, -6.3209, -6.3209, -6.3209, -6.321, -6.321, -6.3211, -6.3213, -6.3213, -6.3214, -6.3251, -5.4868, -5.3825, -5.4056, -3.2678, -5.8701, -4.6481, -4.9113, -5.2866, -5.8171, -5.7335, -4.3889, -4.8615, -4.9414, -4.9909, -5.2798, -5.3355, -5.4831, -5.3794, -5.2482, -4.8128, -5.2659, -5.5019, -5.291, -5.0229, -4.8375, -5.4007, -5.3176, -5.2612, -5.2865, -5.6043, -5.646, -5.6519, -5.4897, -5.9079, -5.908, -5.908, -5.9083, -5.258, -5.1511, -6.2826, -6.2826, -6.2827, -6.2827, -6.2828, -6.2836, -6.2932, -6.2953, -6.2969, -6.3324, -6.3598, -5.9084, -5.9079, -5.9085, -6.4778, -5.6291, -6.8888, -6.8888, -6.8888, -6.8888, -6.8888, -6.8888, -5.9737, -5.908, -5.6383, -6.2895, -4.7494, -5.3264, -5.5234, -5.6464, -4.7459, -3.8886, -5.033, -3.6374, -5.1938, -4.3645, -4.4485, -4.1819, -4.9907, -4.9236, -5.4322, -4.9234, -5.6561, -5.0006, -4.2613, -5.0716, -5.154, -5.1413, -5.1665, -5.4224, -5.1947, -5.336, -4.9421, -5.1668, -5.2168, -5.5145, -5.5236, -5.5245, -5.556, -5.3768, -5.8891, -5.8892, -5.8894, -5.8917, -5.8995, -5.0471, -5.9031, -5.9037, -5.9085, -5.9099, -5.2162, -5.921, -5.9414, -5.9593, -5.9596, -5.2593, -6.0297, -5.5149, -5.5368, -5.3776, -6.4952, -6.4952, -6.4952, -6.4952, -6.4952, -5.1095, -5.6221, -5.6128, -5.5143, -5.889, -5.7082, -4.3198, -5.1973, -4.1109, -4.79, -5.5121, -4.3637, -4.2908, -5.2423, -5.2591, -5.0025, -4.9452, -5.2694, -5.5507, -4.5479, -5.5046, -4.9061, -5.1813, -5.2254, -5.4369, -5.399, -5.3962, -5.4995, -5.5065, -5.5142], "loglift": [30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 1.1841, 1.1669, 1.1455, 1.1116, 1.099, 1.0983, 1.0894, 1.0372, 1.0317, 1.0317, 1.0317, 1.0317, 1.0316, 1.0316, 1.0316, 1.0306, 1.0306, 1.0278, 1.0266, 1.0217, 1.0182, 1.0041, 1.0013, 0.9952, 0.9938, 0.9853, 0.9832, 0.9617, 0.9458, 0.9284, 0.9231, 0.9034, 0.6263, 0.66, 0.8984, 0.5867, 0.7721, 0.3826, 0.6771, 0.8315, 0.6229, 0.7786, 0.8361, 0.7718, 0.3122, 0.3451, 0.4954, 0.5182, 0.4808, 0.0812, -0.222, -0.1263, 0.1943, 0.5244, 0.6921, -0.4723, 0.3423, 0.0308, -0.1538, -0.2354, 0.5704, -0.2789, 1.3965, 1.3891, 1.3664, 1.3538, 1.3454, 1.3286, 1.3156, 1.2934, 1.2787, 1.269, 1.269, 1.269, 1.269, 1.269, 1.269, 1.269, 1.2689, 1.2685, 1.2669, 1.2639, 1.2607, 1.258, 1.2302, 1.2295, 1.2289, 1.2264, 1.2075, 1.1358, 1.0724, 1.0724, 1.0588, 1.0566, 1.025, 0.7818, 1.0179, 1.0081, 1.0555, 0.5714, 0.4629, 0.8466, 0.6319, 0.2908, 0.8293, 0.116, 0.2881, -0.0808, 0.5192, 0.9013, 0.7418, 0.0687, -0.7437, 0.12, -0.7302, 0.0696, -0.4226, 0.0694, 0.0421, -0.0447, 1.4584, 1.4222, 1.3798, 1.3779, 1.3768, 1.3767, 1.3762, 1.3729, 1.3535, 1.3535, 1.3475, 1.3327, 1.3299, 1.3295, 1.3271, 1.3258, 1.3252, 1.3248, 1.3216, 1.2671, 1.2671, 1.2671, 1.2671, 1.267, 1.267, 1.2669, 1.2667, 1.2667, 1.2666, 1.2629, 1.2513, 1.2201, 1.1926, 0.783, 1.1939, 0.8386, 0.8138, 0.8847, 1.0719, 0.9907, 0.3179, 0.5442, 0.4308, 0.3757, 0.6389, 0.6495, 0.78, 0.6515, 0.4524, -0.2588, 0.3649, 0.5197, 0.0691, -0.6666, -1.1093, 0.1056, -0.6234, -1.0857, -1.0631, 0.1315, 0.3297, 1.4148, 1.3909, 1.3827, 1.3827, 1.3826, 1.3824, 1.3303, 1.3228, 1.2972, 1.2972, 1.2972, 1.2971, 1.297, 1.2962, 1.2864, 1.2842, 1.2828, 1.2531, 1.2286, 1.1899, 1.1444, 1.1439, 1.1078, 1.1032, 1.0995, 1.0995, 1.0995, 1.0995, 1.0995, 1.0995, 1.0904, 1.0134, 0.9813, 1.0406, 0.8814, 0.9416, 0.9564, 0.9229, 0.6481, 0.3347, 0.7028, 0.0907, 0.756, 0.3297, 0.3465, -0.0064, 0.5008, 0.4486, 0.7568, 0.3663, 0.8743, 0.3981, -0.2106, 0.3191, 0.3522, 0.2253, 0.1937, 0.6085, 0.2326, 0.3645, -0.3881, -0.46, -0.5089, 1.9007, 1.8903, 1.8895, 1.8539, 1.8059, 1.8009, 1.8008, 1.8005, 1.7979, 1.7892, 1.7864, 1.7852, 1.7844, 1.7792, 1.7775, 1.7694, 1.7653, 1.7425, 1.7227, 1.7223, 1.7188, 1.643, 1.6342, 1.612, 1.6041, 1.5748, 1.5748, 1.5748, 1.5748, 1.5748, 1.5717, 1.5326, 1.5271, 1.4375, 1.483, 1.4354, 0.9699, 1.2445, 0.597, 0.6039, 1.2851, -0.0074, -0.1153, 0.9691, 0.9745, 0.4985, 0.4149, 0.8692, 1.2321, -0.4971, 1.1151, -0.2119, 0.246, 0.2809, 0.7086, 0.3015, -0.6011, 1.0308, 0.4786, 1.0012]}, "token.table": {"Topic": [4, 5, 1, 2, 1, 2, 3, 5, 2, 5, 2, 4, 5, 1, 4, 3, 1, 2, 3, 4, 5, 2, 5, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 4, 5, 1, 2, 5, 2, 4, 1, 2, 3, 4, 4, 4, 1, 3, 4, 3, 1, 2, 3, 4, 5, 4, 2, 4, 3, 5, 1, 2, 5, 1, 4, 4, 1, 3, 1, 1, 1, 5, 2, 4, 5, 1, 5, 2, 1, 1, 2, 1, 4, 5, 3, 1, 3, 4, 5, 2, 3, 1, 3, 4, 5, 3, 1, 1, 2, 3, 5, 2, 4, 5, 1, 3, 4, 1, 2, 4, 1, 2, 5, 1, 2, 3, 4, 5, 2, 5, 1, 2, 1, 2, 3, 4, 2, 3, 1, 2, 4, 1, 2, 3, 2, 4, 4, 2, 4, 2, 3, 4, 5, 4, 5, 3, 4, 5, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 1, 3, 4, 5, 5, 1, 4, 1, 2, 3, 4, 5, 2, 1, 2, 3, 4, 2, 3, 5, 1, 2, 4, 5, 1, 2, 3, 4, 2, 2, 1, 3, 4, 5, 1, 5, 3, 3, 4, 2, 1, 2, 3, 4, 5, 3, 1, 2, 3, 4, 5, 1, 3, 2, 3, 4, 5, 2, 4, 5, 1, 1, 4, 1, 2, 3, 5, 1, 2, 3, 5, 1, 2, 3, 4, 5, 1, 2, 1, 1, 4, 1, 2, 3, 4, 5, 3, 2, 5, 3, 5, 1, 2, 3, 4, 5, 2, 3, 4, 2, 1, 5, 1, 5, 5, 1, 4, 5, 1, 1, 4, 1, 3, 4, 4, 4, 1, 2, 3, 1, 2, 3, 5, 5, 3, 1, 2, 3, 1, 5, 3, 4, 3, 1, 2, 4, 1, 2, 3, 4, 1, 2, 4, 5, 1, 5, 1, 4, 2, 3, 2, 2, 3, 3, 2, 4, 1, 4, 5, 4, 1, 2, 3, 4, 5, 1, 2, 3, 4, 1, 3, 1, 2, 3, 4, 5, 1, 4, 1, 3, 4, 5, 1, 2, 3, 4, 5, 5, 1, 4, 3, 5, 5, 1, 2, 3, 4, 1, 5, 1, 5, 3, 5, 1, 5, 1, 4, 5, 1, 3, 4, 5, 2, 3, 4, 3, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 3, 4, 1, 2, 4, 3, 1, 2, 3, 4, 5, 5, 4, 5, 1, 2, 3, 4, 1, 2, 5, 4, 3, 5, 2, 3, 4, 1, 3, 4, 5, 4, 5, 1, 2, 4, 1, 1, 2, 3, 4, 5, 2, 2, 3, 1, 2, 4, 1, 2, 3, 5, 3, 4, 1, 1, 2, 3, 4, 1, 3, 3, 1, 5, 1, 2, 3, 4, 1, 2, 3, 4, 5, 1, 3, 3, 1, 4, 1, 2, 3, 4, 5, 1, 2, 3, 4, 2, 1, 5, 1, 3, 4, 5, 1, 4, 1, 2, 3, 4, 5, 3, 4, 3, 5, 5, 2, 3], "Freq": [0.7005457807116118, 0.3502728903558059, 0.7299255787877451, 0.18248139469693628, 0.18306353343779833, 0.18306353343779833, 0.18306353343779833, 0.549190600313395, 0.8941653266139076, 0.7341088549805481, 0.2055828929071903, 0.4111657858143806, 0.4111657858143806, 0.6422908623891569, 0.21409695412971896, 0.9067547734931304, 0.07113137040489148, 0.21339411121467444, 0.21339411121467444, 0.4267882224293489, 0.07113137040489148, 0.8966089563350483, 0.5010836914984679, 0.9067141378677405, 0.36528559020253953, 0.36528559020253953, 0.16713134555972223, 0.33426269111944446, 0.11142089703981482, 0.33426269111944446, 0.05571044851990741, 0.11191205903328601, 0.33573617709985804, 0.44764823613314403, 0.11191205903328601, 0.8595644819446575, 0.6873232039044517, 0.2291077346348172, 0.14879095830487107, 0.7439547915243553, 0.5192913045572839, 0.25964565227864195, 0.25964565227864195, 0.8993258550694091, 0.6765333249316161, 0.452291761518788, 0.5543028965452702, 0.1847676321817567, 0.1847676321817567, 0.9067076696519304, 0.5062759669347962, 0.1910475346923759, 0.06686663714233157, 0.21970466489623228, 0.01910475346923759, 0.6734822657874368, 0.2684839735410956, 0.5369679470821912, 0.30230115817632974, 0.6046023163526595, 0.1940750221814801, 0.5822250665444403, 0.1940750221814801, 0.16682261447150665, 0.8341130723575332, 0.8993212039544819, 0.2684647577859422, 0.8053942733578265, 0.8579394036658663, 0.8486985239080028, 0.6595891563992816, 0.21986305213309387, 0.8956707810040289, 0.9070703676312403, 0.4980205686860448, 0.29229480606252284, 0.5845896121250457, 0.8029189137827976, 0.8579925402801732, 0.15266084329095725, 0.8141911642184386, 0.6581944869514552, 0.1645486217378638, 0.1645486217378638, 0.6783540399646071, 0.27379116445803386, 0.36505488594404517, 0.09126372148601129, 0.18252744297202259, 0.8953023570706387, 0.8155688227653859, 0.4499267035278712, 0.1687225138229517, 0.1687225138229517, 0.1687225138229517, 0.679595519645981, 0.8579416271377867, 0.4713214106303561, 0.18852856425214243, 0.18852856425214243, 0.09426428212607121, 0.15743904215519963, 0.4723171264655989, 0.31487808431039926, 0.16849749790344745, 0.6739899916137898, 0.16849749790344745, 0.1474529235823587, 0.7372646179117934, 0.9043748489961383, 0.2026362025091256, 0.4052724050182512, 0.4052724050182512, 0.25621990374017317, 0.08540663458005772, 0.4270331729002886, 0.17081326916011544, 0.17081326916011544, 0.895322417422828, 0.5020064137209169, 0.8602123412705447, 0.8952827045412786, 0.8198179647904404, 0.08198179647904404, 0.08198179647904404, 0.04099089823952202, 0.7436735698198628, 0.14873471396397256, 0.22052316830574037, 0.6615695049172211, 0.899084875649692, 0.736429906294622, 0.1841074765736555, 0.1841074765736555, 0.536098920560546, 0.268049460280273, 0.8939032103125091, 0.6700887871962575, 0.8993261754825341, 0.6742449966281944, 0.28817677359659527, 0.14408838679829764, 0.43226516039489293, 0.5556507617671368, 0.2778253808835684, 0.23276124920532798, 0.46552249841065596, 0.23276124920532798, 0.7341104740800566, 0.1954076169032423, 0.14655571267743173, 0.2442595211290529, 0.2442595211290529, 0.1954076169032423, 0.22178619375136294, 0.22178619375136294, 0.4990189359405666, 0.11089309687568147, 0.28146632504697383, 0.49256606883220416, 0.21109974378523036, 0.07036658126174346, 0.7628279877831645, 0.6443517801118172, 0.3221758900559086, 0.24986901921757348, 0.36092191664760614, 0.05552644871501633, 0.27763224357508165, 0.05552644871501633, 0.8952854140821409, 0.28398255420748253, 0.28398255420748253, 0.3786434056099767, 0.09466085140249418, 0.225361875709786, 0.676085627129358, 0.5020105948167709, 0.8579520819319767, 0.17213341714217137, 0.5164002514265141, 0.17213341714217137, 0.19666648287669042, 0.24583310359586302, 0.2949997243150356, 0.24583310359586302, 0.6742440825323293, 0.895279227900961, 0.4601892313034929, 0.3579249576804945, 0.10226427362299842, 0.10226427362299842, 0.2463515595951441, 0.7390546787854323, 0.6798001418825502, 0.8159926918858906, 0.676536247761938, 0.8952829302521585, 0.1373250525764237, 0.1373250525764237, 0.3433126314410592, 0.2746501051528474, 0.1373250525764237, 0.9067146270344719, 0.45333353067832144, 0.20148156919036508, 0.05037039229759127, 0.3022223537855476, 0.05037039229759127, 0.8579306949440576, 0.9067049869539986, 0.452076949050838, 0.2712461694305028, 0.1808307796203352, 0.0904153898101676, 0.4285961308802833, 0.21429806544014166, 0.21429806544014166, 0.8581543063657379, 0.3273857642696478, 0.49107864640447174, 0.102870141609672, 0.77152606207254, 0.102870141609672, 0.051435070804836, 0.5613968311783907, 0.09356613852973178, 0.18713227705946356, 0.09356613852973178, 0.28268259121450584, 0.05653651824290117, 0.2261460729716047, 0.28268259121450584, 0.1696095547287035, 0.48913160784430193, 0.48913160784430193, 0.8479253068748349, 0.26533196668931247, 0.5306639333786249, 0.2795988665737924, 0.2795988665737924, 0.2795988665737924, 0.12709039389717836, 0.025418078779435672, 0.9067011519431669, 0.2906794688380408, 0.5813589376760816, 0.8142495369344775, 0.73411013643307, 0.483384526327984, 0.2864500896758424, 0.10741878362844089, 0.01790313060474015, 0.10741878362844089, 0.1496749084412748, 0.2993498168825496, 0.5986996337650992, 0.8952870612542871, 0.516489092253471, 0.34432606150231393, 0.658055628691707, 0.219351876230569, 0.500714414162566, 0.2399728496719349, 0.2399728496719349, 0.4799456993438698, 0.8585562489447587, 0.5754801690806601, 0.28774008454033007, 0.26428855811098445, 0.26428855811098445, 0.4404809301849741, 0.6734829517931318, 0.6765359455221253, 0.24104046848321653, 0.24104046848321653, 0.48208093696643306, 0.3192357525872803, 0.3192357525872803, 0.10641191752909344, 0.3192357525872803, 0.5019904123712041, 0.6799575482010211, 0.32982971392449695, 0.10994323797483231, 0.5497161898741616, 0.24822859977787223, 0.7446857993336167, 0.8152688627985868, 0.6734814323232825, 0.9067035351167082, 0.2822815858848647, 0.5645631717697294, 0.18818772392324312, 0.37089133338049607, 0.3272570588651436, 0.15271996080373368, 0.13090282354605742, 0.11701057867253348, 0.23402115734506695, 0.23402115734506695, 0.3510317360176004, 0.8457894936853405, 0.5018686016254849, 0.7137689849504936, 0.2855075939801974, 0.5763515052560937, 0.3842343368373958, 0.8955352800860505, 0.8952799344635709, 0.9067090824506883, 0.9056196079033969, 0.8902828654346797, 0.1483804775724466, 0.9591548577440323, 0.2939260921041484, 0.5878521842082968, 0.8993281475959122, 0.3884772718110528, 0.23906293649910942, 0.0747071676559717, 0.1942386359055264, 0.10459003471836037, 0.2538592777825562, 0.40617484445208984, 0.05077185555651123, 0.3046311333390674, 0.7700068913961593, 0.2566689637987198, 0.5058334231936362, 0.07226191759909088, 0.21678575279727266, 0.21678575279727266, 0.5001612458296116, 0.2653590781746667, 0.5307181563493334, 0.3101758305762169, 0.15508791528810845, 0.3101758305762169, 0.3101758305762169, 0.517242995041517, 0.09404418091663946, 0.07837015076386622, 0.2821325427499184, 0.03134806030554649, 0.5008695852164484, 0.7314456865950645, 0.18286142164876612, 0.6796942217370324, 0.49901673812351216, 0.5011826441704679, 0.1478059887723514, 0.5912239550894056, 0.1478059887723514, 0.1478059887723514, 0.21319202521593633, 0.639576075647809, 0.7978029201733312, 0.26593430672444374, 0.24722394161046274, 0.4944478832209255, 0.289604806151272, 0.579209612302544, 0.45775023141210963, 0.22887511570605482, 0.34331267355908224, 0.5754013367243233, 0.1438503341810808, 0.2877006683621616, 0.7341085562230854, 0.66969246522121, 0.8156182993643685, 0.8991543023813588, 0.8158964326506125, 0.37650588891490144, 0.12550196297163382, 0.10040157037730706, 0.2761043185375944, 0.10040157037730706, 0.1781250046575829, 0.45803572626235606, 0.05089285847359512, 0.1272321461839878, 0.20357143389438048, 0.9067073022200822, 0.8993260948024865, 0.8579394262669721, 0.89572441587473, 0.6765352226534863, 0.9067019107184213, 0.045530544133639134, 0.22765272066819567, 0.1365916324009174, 0.2731832648018348, 0.31871380893547396, 0.7341097611126374, 0.673486020793418, 0.5013967981358162, 0.19112442157855186, 0.19112442157855186, 0.5733732647356556, 0.8075831033552904, 0.3356020313457354, 0.44746937512764723, 0.11186734378191181, 0.8992706219621593, 0.6797636028702487, 0.7618459440187787, 0.16924040246277244, 0.6769616098510898, 0.16924040246277244, 0.12808161962270048, 0.3202040490567512, 0.5123264784908019, 0.06404080981135024, 0.8993357261812926, 0.49803956174357294, 0.12110879743874522, 0.3633263923162357, 0.4844351897549809, 0.8594315789754846, 0.4137993354073822, 0.16551973416295288, 0.16551973416295288, 0.16551973416295288, 0.08275986708147644, 0.8962889170664579, 0.8952840514220766, 0.6796958220476795, 0.1893822320281149, 0.5681466960843448, 0.1893822320281149, 0.6497997242412301, 0.18565706406892288, 0.09282853203446144, 0.09282853203446144, 0.7751076719674843, 0.19377691799187108, 0.95827719622967, 0.14833156469834669, 0.24721927449724448, 0.29666312939669337, 0.29666312939669337, 0.858401885318737, 0.9066663974006794, 0.6801745074202012, 0.29220001713070354, 0.5844000342614071, 0.0955456221154893, 0.0955456221154893, 0.3821824884619572, 0.3821824884619572, 0.21103941994306222, 0.09232974622508973, 0.44845876737900725, 0.15827956495729667, 0.06594981873220694, 0.85793091399451, 0.679933377983174, 0.6799727338754138, 0.6414170945564712, 0.6765339540292362, 0.5134043779712465, 0.14668696513464186, 0.07334348256732093, 0.14668696513464186, 0.07334348256732093, 0.14793268518604633, 0.5917307407441853, 0.14793268518604633, 0.14793268518604633, 0.8952849805168126, 0.8580298637836706, 0.7588262121200273, 0.3031856377560089, 0.05053093962600148, 0.4042475170080118, 0.2021237585040059, 0.8579405753474363, 0.6765371077636331, 0.20898675985748638, 0.20898675985748638, 0.1567400698931148, 0.261233449821858, 0.1567400698931148, 0.38532768931531086, 0.5779915339729663, 0.9057047887164964, 0.7618381105974333, 0.4934393024562448, 0.6703643416858709, 0.6799513238839758], "Term": ["100", "100", "2", "2", "2018", "2018", "2018", "2018", "2019", "90", "aaron_warner", "aaron_warner", "aaron_warner", "absolutely", "absolutely", "ace", "actually", "actually", "actually", "actually", "actually", "add", "addition", "ahhhh", "already", "already", "also", "also", "also", "also", "also", "amazing", "amazing", "amazing", "amazing", "appreciate", "assistant_villain", "assistant_villain", "back", "back", "bad", "bad", "bad", "barrow", "big", "biggest", "bit", "bit", "bit", "black", "book", "book", "book", "book", "book", "brdaughter", "brings", "brings", "bro", "bro", "broken", "broken", "broken", "burn", "burn", "cant", "care", "care", "caught", "chapter", "choose", "choose", "clear", "continue", "court", "court_thorn", "court_thorn", "crave_series", "dark", "daughter_pirate", "daughter_pirate", "definitely", "definitely", "definitely", "doesn39t", "don39t", "don39t", "don39t", "don39t", "dynasty", "e", "end", "end", "end", "end", "ending", "enough", "even", "even", "even", "even", "ever", "ever", "ever", "everything", "everything", "everything", "evil", "evil", "excited", "fact", "fact", "fact", "fall", "fall", "fall", "fall", "fall", "fav", "feeling", "female", "filled", "first", "first", "first", "first", "first_thought", "first_thought", "fit", "fit", "flame", "font", "font", "font", "four", "four", "fourth_wing", "freaking", "full", "funny", "gacha", "gacha", "gacha", "gacha_kid", "gacha_kid", "gacha_phase", "gacha_phase", "gacha_phase", "game", "get", "get", "get", "get", "get", "get_girl", "get_girl", "get_girl", "get_girl", "girl", "girl", "girl", "girl", "giving", "going", "going", "good", "good", "good", "good", "good", "goodcoming", "got", "got", "got", "got", "got_girl", "got_girl", "hannibal", "happy", "heard", "heard", "heard", "heart", "heart", "heart", "heart", "heartfelt", "herebrits", "hero", "hero", "hero", "hero", "hero_sacrifice", "hero_sacrifice", "her\u00f3i", "her\u00f3is", "honey", "horsemenbrbrbrbrits", "i39m", "i39m", "i39m", "i39m", "i39m", "ignite", "im", "im", "im", "im", "im", "interest", "iron", "it39s", "it39s", "it39s", "it39s", "ive", "ive", "ive", "killed", "kind", "kind", "king", "king", "king", "king", "knew", "knew", "knew", "knew", "know", "know", "know", "know", "know", "last", "last", "lead", "let_world", "let_world", "like", "like", "like", "like", "like", "lip", "list", "list", "little", "loses", "love", "love", "love", "love", "love", "loved", "loved", "loved", "loyal", "made", "made", "main", "main", "making", "man", "man", "man", "manwha", "mare", "mare", "maven", "maven", "maven", "mebronce", "motion", "movie", "movie", "movie", "much", "much", "much", "much", "needed", "nem", "never", "never", "never", "nostalgia", "nostalgia", "o", "oh", "okay", "omg", "omg", "omg", "one", "one", "one", "one", "page", "page", "page", "page", "please", "plot", "plot_twist", "plot_twist", "pretty", "pretty", "protagonist", "pure", "put", "que", "queen", "queen", "queenquot", "quotthe_hero", "quotthe_hero", "r", "read", "read", "read", "read", "read", "reading", "reading", "reading", "reading", "real", "real", "really", "really", "really", "really", "recognized", "recommendation", "recommendation", "red", "red", "red", "red", "red_queen", "red_queen", "red_queen", "red_queen", "red_queen", "religion", "remember", "remember", "remind", "reminds", "respect", "right", "right", "right", "right", "rose", "rose", "sacrifice", "sacrifice", "sacrifice_everything", "sacrifice_everything", "sacrifice_world", "sacrifice_world", "save", "save", "save", "saw", "saw", "saw", "scenario", "school_good", "se", "seems", "ser", "series", "series", "series", "series", "series", "shatter", "shatter", "shatter", "shatter", "shatter", "sheer", "shelf", "shot", "sight", "slowly", "somethin39", "song", "song", "song", "song", "song", "songbird", "soooo", "sorry", "still", "still", "still", "stop", "story", "story", "story", "suggestion", "s\u00e3o", "talk", "thing", "thing", "thing", "think", "think", "think", "think", "thinking", "thorn", "thought", "thought", "thought", "three", "time", "time", "time", "time", "time", "total", "trait", "trope", "true", "true", "true", "u", "u", "u", "u", "um", "um", "understand", "upon_broken", "upon_broken", "upon_broken", "upon_broken", "used", "version", "vezes", "vibe", "vibe", "video", "video", "video", "video", "villain", "villain", "villain", "villain", "villain", "villin", "vil\u00e3o", "vil\u00f5es", "w", "walking", "want", "want", "want", "want", "want", "warner", "warner", "warner", "warner", "warthe", "well", "wise", "world", "world", "world", "world", "world_burn", "worm", "would", "would", "would", "would", "would", "would_sacrifice", "would_sacrifice", "x", "y39all", "yesss", "young", "\u00e9"]}, "R": 30, "lambda.step": 0.01, "plot.opts": {"xlab": "PC1", "ylab": "PC2"}, "topic.order": [4, 3, 1, 2, 5]};
+
+function LDAvis_load_lib(url, callback){
+  var s = document.createElement('script');
+  s.src = url;
+  s.async = true;
+  s.onreadystatechange = s.onload = callback;
+  s.onerror = function(){console.warn("failed to load library " + url);};
+  document.getElementsByTagName("head")[0].appendChild(s);
+}
+
+if(typeof(LDAvis) !== "undefined"){
+   // already loaded: just create the visualization
+   !function(LDAvis){
+       new LDAvis("#" + "ldavis_el17821336237478868002510392258", ldavis_el17821336237478868002510392258_data);
+   }(LDAvis);
+}else if(typeof define === "function" && define.amd){
+   // require.js is available: use it to load d3/LDAvis
+   require.config({paths: {d3: "https://d3js.org/d3.v5"}});
+   require(["d3"], function(d3){
+      window.d3 = d3;
+      LDAvis_load_lib("https://cdn.jsdelivr.net/gh/bmabey/pyLDAvis@3.4.0/pyLDAvis/js/ldavis.v3.0.0.js", function(){
+        new LDAvis("#" + "ldavis_el17821336237478868002510392258", ldavis_el17821336237478868002510392258_data);
+      });
+    });
+}else{
+    // require.js not available: dynamically load d3 & LDAvis
+    LDAvis_load_lib("https://d3js.org/d3.v5.js", function(){
+         LDAvis_load_lib("https://cdn.jsdelivr.net/gh/bmabey/pyLDAvis@3.4.0/pyLDAvis/js/ldavis.v3.0.0.js", function(){
+                 new LDAvis("#" + "ldavis_el17821336237478868002510392258", ldavis_el17821336237478868002510392258_data);
+            })
+         });
+}
+</script></div></div></div><span id="output-footer"></span></div></body></html>

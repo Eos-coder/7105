@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- saved from url=(0124)https://bvo5erzpmln-496ff2e9c6d22116-0-colab.googleusercontent.com/outputframe.html?vrz=colab_20250317-060147_RC00_737487689 -->
+<html theme="light" editor="Default Light" style="overflow-y: hidden;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+  // Avoid arrow function syntax to stay ES5 compatible for the sake of googlebot.
+  window.addEventListener("message", function (message) {
+    if (message.source != window.parent) {
+      return;
+    }
+    if (message.data.sandboxed_iframe_evaluation) {
+      // Message is available in scope so evaluated script can get params from
+      // it.
+      window.currentMessage = message;
+      eval.call(null, message.data.sandboxed_iframe_evaluation);
+      delete window.currentMessage;
+    }
+  });
+</script>
+<style>html{--google-orange-600:#e8710a;--google-yellow-600:#f9ab00;--google-blue-600:#1a73e8;--google-blue-700:#1967d2;--paper-amber-50:#fff8e1;--paper-amber-400:#ffca28;--paper-blue-700:#1976d2;--paper-orange-300:#ffb74d;--paper-orange-400:#ffa726;--paper-orange-500:#ff9800;--paper-orange-700:#f57c00;--paper-grey-200:#eee;--paper-grey-300:#e0e0e0;--paper-grey-400:#bdbdbd;--paper-grey-500:#9e9e9e;--paper-grey-600:#757575;--paper-grey-700:#616161;--paper-grey-800:#424242;--paper-red-100:#ffcdd2;--paper-red-900:#b71c1c;--paper-red-a700:#d50000;--md-icon-font:"Google Symbols";--mdc-icon-font:"Google Symbols"}html{--colab-primary-color:#0b57d0;--colab-primary-text-color:#1f1f1f;--colab-secondary-text-color:#444746;--colab-primary-surface-color:#fff;--colab-secondary-surface-color:#f7f7f7;--colab-highlighted-surface-color:var(--paper-grey-200);--colab-border-color:#dadada;--colab-bold-border-color:#747775;--ansi-black:#000;--ansi-red:#8b0000;--ansi-green:#006400;--ansi-yellow:#cdcd00;--ansi-blue:#00e;--ansi-magenta:#cd00cd;--ansi-cyan:#4682b4;--ansi-gray:#e5e5e5;--ansi-bright-black:#7f7f7f;--ansi-bright-red:red;--ansi-bright-green:#00d000;--ansi-bright-yellow:#ff0;--ansi-bright-blue:#5c5cff;--ansi-bright-magenta:#f0f;--ansi-bright-cyan:#0ff;--ansi-bright-gray:#fff;--colab-anchor-color:var(--colab-primary-color);--colab-icon-color:var(--colab-secondary-text-color);--colab-code-font-family:monospace;--colab-chrome-font-family:"Roboto","Noto",sans-serif;--colab-chrome-font-size:14px}html[theme=dark]{--colab-primary-color:#a8c7fa;--colab-primary-text-color:#e3e3e3;--colab-secondary-text-color:#c4c7c5;--colab-primary-surface-color:#383838;--colab-secondary-surface-color:#454545;--colab-highlighted-surface-color:#525252;--colab-border-color:var(--paper-grey-700);--colab-bold-border-color:#c4c7c5;--ansi-black:#3f3f3f;--ansi-red:#ff7a88;--ansi-green:#57bb8a;--ansi-yellow:#ff6;--ansi-blue:#82b1ff;--ansi-magenta:#cd00cd;--ansi-cyan:#99bbd7;--ansi-gray:#e5e5e5;--ansi-bright-green:#0f0}html[theme=dark] body.embedded{--colab-primary-surface-color:#131314;--colab-secondary-surface-color:#202124;--colab-highlighted-surface-color:#202124;--colab-border-color:#3c4043}html[editor=Synthwave84]{--colab-anchor-color:#f97e72;--colab-primary-surface-color:#241b2f;--colab-secondary-surface-color:#49549539;--colab-highlighted-surface-color:#372d4b;--colab-border-color:#34294fb3;--ansi-red:#fe4450;--ansi-green:#72f1b8;--ansi-yellow:#f97e72;--ansi-blue:#03edf9;--ansi-magenta:#ff7edb;--ansi-cyan:#03edf9;--ansi-bright-red:#fe4450;--ansi-bright-green:#72f1b8;--ansi-bright-yellow:#fede5d;--ansi-bright-blue:#03edf9;--ansi-bright-magenta:#ff7edb;--ansi-bright-cyan:#03edf9}html{overflow-y:hidden}body{background:var(--colab-primary-surface-color);color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-size:var(--colab-chrome-font-size);line-height:1.24;font-weight:400;padding:7px 0 10px 5px;margin:0}h1,h2,h3,h4,h5,h6{color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-weight:700;margin-bottom:4px}p,ul{margin-bottom:6px;margin-top:6px}pre{margin-bottom:0;margin-top:0}a{color:var(--colab-anchor-color)}div.output_text,div.output_text pre,div.stream{display:inline}.execute_result>pre{display:block}.output_latex,.output_markdown{max-width:1016px}.output_markdown table,table.dataframe{border-collapse:collapse;border-spacing:0;border:none;table-layout:fixed}.output_markdown table thead,table.dataframe thead{border-bottom:1px solid var(--colab-border-color);font-family:var(--colab-code-font-family);text-align:right}.output_markdown table td,.output_markdown table th,.output_markdown table tr,table.dataframe td,table.dataframe th,table.dataframe tr{border:none;padding:.5em;white-space:normal}.output_markdown table th,table.dataframe th{font-weight:700}.output_markdown table th.col_heading,table.dataframe th.col_heading{text-align:right}.output_markdown table tbody tr:nth-child(odd),table.dataframe tbody tr:nth-child(odd){background:var(--colab-secondary-surface-color)}.output_markdown table tbody tr:hover,.output_markdown table tbody tr:nth-child(odd):hover,table.dataframe tbody tr:hover,table.dataframe tbody tr:nth-child(odd):hover{background-color:var(--colab-highlighted-surface-color)}.output_markdown table td,table.dataframe td{text-align:right}table.dataTable input.text_filter{width:95%}.output_markdown table th,table.dataTable th{text-align:left}.output_image>img{background-color:#fff;max-width:100%;vertical-align:bottom}.output_image>img.unconstrained{max-width:unset}.ansibold{font-weight:700}.ansiblack{color:#000}.ansired{color:darkred}.ansigreen{color:#006400}.ansiyellow{color:brown}.ansiblue{color:#00008b}.ansipurple{color:#9400d3}.ansicyan{color:#4682b4}.ansigray{color:gray}.ansibgblack{background-color:#000}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:#ff0}.ansibgblue{background-color:blue}.ansibgpurple{background-color:#f0f}.ansibgcyan{background-color:cyan}.ansibggray{background-color:gray}.output-error span{font-weight:400!important}.output-error pre{white-space:pre-wrap}.display_data .output_text pre,.execute_result .output_text pre{white-space:pre-wrap}input.raw_input{font-family:var(--colab-code-font-family);width:90%}input{background:var(--colab-primary-surface-color);border:1px solid var(--colab-bold-border-color);color:var(--colab-primary-text-color)}#output-area{display:flow-root}#output-area button.colab{background-color:var(--colab-secondary-surface-color);border:0;box-shadow:0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12),0 3px 3px -2px rgba(0,0,0,.4);color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-size:11px;margin:0 4px 10px;padding:6px;text-transform:uppercase;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}#output-area button.colab:hover{background-color:var(--colab-highlighted-surface-color);cursor:pointer}#output-area .output-error button.error-details{background-color:#42a5f5;color:#fff}#output-area .output-error button.error-details:hover{background-color:#2196f3}#output-area .stdin-widget{-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;display:inline;font-family:var(--colab-code-font-family);margin-right:10px;margin-top:10px;min-width:250px;padding:1px}#output-area .stdin-widget-hidden{visibility:hidden}.error .collapsed .extraneous{display:none}.error .error-expander{-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}.error .error-expander hr{border:0;border-top:1px solid var(--colab-bold-border-color);-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;height:1px;margin:0 10px;padding:0}.error .error-expander hr:first-child{max-width:240px}.error .error-expander svg{fill:var(--colab-icon-color);height:24px;stroke:var(--colab-icon-color);width:24px}.lm-Widget.lm-mod-hidden{display:none!important}audio:focus{outline:none}.string-repr{display:inline}.string-repr .quote{opacity:75%;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.string-repr pre{display:inline;white-space:pre-wrap;word-break:break-all}.string-repr button{color:var(--colab-primary-text-color);cursor:pointer;border:1px solid #767676;border-radius:2px;outline:none}.string-repr button.copy{background:transparent;border:none;margin-left:4px;opacity:0;padding:0;stroke:var(--colab-primary-text-color);-webkit-transition:opacity .2s;transition:opacity .2s}.string-repr button.copy svg{width:14px}.string-repr.hover button.copy,.string-repr:hover button.copy{opacity:1}.string-repr button.more{background-color:transparent;border-color:transparent;display:none;padding:0;-webkit-transition:background-color .2s,border-color .2s;transition:background-color .2s,border-color .2s}.string-repr.large button.more{display:inline}.string-repr.large.truncated button .collapse{display:none}.string-repr.large button .expand{display:none}.string-repr.large.truncated button .expand{display:inline}.string-repr.hover button.more,.string-repr:hover button.more{border-color:#767676}
+/*# sourceMappingURL=outputframe.css.map */
+//@ sourceURL=https://ssl.gstatic.com/colaboratory-static/common/c89d63b7718272c208311f2caaf770da/outputframe.css</style><!--<base href="https://localhost:8080/">--><base href="."><script src="./d3.v5.js.下载" async=""></script><script src="./ldavis.v3.0.0.js.下载" async=""></script><style data-id="immersive-translate-input-injected-css">.immersive-translate-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.immersive-translate-attach-loading::after {
+  content: " ";
+
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-2000%, -50%);
+  z-index: 100;
+}
+
+.immersive-translate-loading-spinner {
+  vertical-align: middle !important;
+  width: 10px !important;
+  height: 10px !important;
+  display: inline-block !important;
+  margin: 0 4px !important;
+  border: 2px rgba(221, 244, 255, 0.6) solid !important;
+  border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+  animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+}
+
+@-webkit-keyframes immersive-translate-loading-animation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes immersive-translate-loading-animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.immersive-translate-input-loading {
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+}
+
+@keyframes immersiveTranslateShadowRolling {
+  0% {
+    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  12% {
+    box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  25% {
+    box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  36% {
+    box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+      100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+      110px 0 var(--loading-color), 100px 0 var(--loading-color);
+  }
+
+  62% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+      120px 0 var(--loading-color), 110px 0 var(--loading-color);
+  }
+
+  75% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      130px 0 var(--loading-color), 120px 0 var(--loading-color);
+  }
+
+  87% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+  }
+
+  100% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.immersive-translate-toast {
+  display: flex;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  right: 0;
+  top: 1%;
+  width: fit-content;
+  padding: 12px 20px;
+  margin: auto;
+  overflow: auto;
+  background: #fef6f9;
+  box-shadow: 0px 4px 10px 0px rgba(0, 10, 30, 0.06);
+  font-size: 15px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.immersive-translate-toast-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.immersive-translate-toast-hidden {
+  margin: 0 20px 0 72px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.immersive-translate-toast-close {
+  color: #666666;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-toast {
+    top: 0;
+    padding: 12px 0px 0 10px;
+  }
+  .immersive-translate-toast-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .immersive-translate-toast-hidden {
+    margin: 10px auto;
+  }
+}
+
+.immersive-translate-modal {
+  display: none;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+}
+
+.immersive-translate-modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 40px 24px 24px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 270px;
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+    "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-content {
+    margin: 50% auto !important;
+  }
+}
+
+.immersive-translate-modal .immersive-translate-modal-content-in-input {
+  max-width: 500px;
+}
+.immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+  text-align: left;
+  max-height: unset;
+}
+
+.immersive-translate-modal-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.immersive-translate-modal-body {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  word-break: break-all;
+  margin-top: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+.immersive-translate-close {
+  color: #666666;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.immersive-translate-close:hover,
+.immersive-translate-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.immersive-translate-modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.immersive-translate-btn {
+  width: fit-content;
+  color: #fff;
+  background-color: #ea4c89;
+  border: none;
+  font-size: 16px;
+  margin: 0 8px;
+  padding: 9px 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.immersive-translate-btn:hover {
+  background-color: #f082ac;
+}
+.immersive-translate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.immersive-translate-btn:disabled:hover {
+  background-color: #ea4c89;
+}
+
+.immersive-translate-cancel-btn {
+  /* gray color */
+  background-color: rgb(89, 107, 120);
+}
+
+.immersive-translate-cancel-btn:hover {
+  background-color: hsl(205, 20%, 32%);
+}
+
+.immersive-translate-action-btn {
+  background-color: transparent;
+  color: #ea4c89;
+  border: 1px solid #ea4c89;
+}
+
+.immersive-translate-btn svg {
+  margin-right: 5px;
+}
+
+.immersive-translate-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #007bff;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-primary-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #ea4c89;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-modal input[type="radio"] {
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.immersive-translate-modal label {
+  cursor: pointer;
+}
+
+.immersive-translate-close-action {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.imt-image-status {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 16px !important;
+}
+.imt-image-status img,
+.imt-image-status svg,
+.imt-img-loading {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 0 0 8px 0 !important;
+  min-height: 28px !important;
+  min-width: 28px !important;
+  position: relative !important;
+}
+.imt-img-loading {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+  background-size: 28px 28px;
+  animation: image-loading-rotate 1s linear infinite !important;
+}
+
+.imt-image-status span {
+  color: var(--bg-2, #fff) !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  font-weight: 500 !important;
+  font-family: "PingFang SC", Arial, sans-serif !important;
+}
+
+@keyframes image-loading-rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+</style></head><body><div id="output-area"><span id="output-header"> </span><div id="output-body"><div class="stream output-id-1"><div class="output_subarea output_text"><pre>WARNING:gensim.models.ldamodel:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+</pre></div></div><div class="stream output-id-2"><div class="output_subarea output_text"><pre>Topic Modelling Perplexity: -5.408390955192837
+Topic Modelling Coherence Score: 0.39326810915718635
+</pre></div></div><div class="execute_result output-id-3"><div class="output_subarea output_html rendered_html">
+<link rel="stylesheet" type="text/css" href="./ldavis.v1.0.0.css">
+
+
+<div id="ldavis_el17821336212633986407976299584" style="background-color:white;"><div id="ldavis_el17821336212633986407976299584-top" style="width: 1210px"><div style="padding: 5px; background-color: #e8e8e8; display: inline-block; width: 530px; height: 50px; float: left"><label for="ldavis_el17821336212633986407976299584-topic" style="font-family: sans-serif; font-size: 14px">Selected Topic: <span id="ldavis_el17821336212633986407976299584-topic-value"></span></label><input style="width: 50px" type="text" min="0" max="5" step="1" id="ldavis_el17821336212633986407976299584-topic"><button id="ldavis_el17821336212633986407976299584-topic-down" style="margin-left: 5px">Previous Topic</button><button id="ldavis_el17821336212633986407976299584-topic-up" style="margin-left: 5px">Next Topic</button><button id="ldavis_el17821336212633986407976299584-topic-clear" style="margin-left: 5px">Clear Topic</button></div><div id="ldavis_el17821336212633986407976299584-lambdaInput" style="padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: 530px; float: right; margin-right: 30px"><div style="padding: 5px; height: 20px; width: 220px; font-family: sans-serif; float: left" id="ldavis_el17821336212633986407976299584-lambdaZero"><text x="0" y="0" style="font-size: 14px;">Slide to adjust relevance metric:</text><text x="125" y="-5" style="font-size: 10px; position: absolute;">(2)</text></div><div id="ldavis_el17821336212633986407976299584-sliderdiv" style="padding: 5px; height: 40px; width: 250px; float: right; margin-top: -5px; margin-right: 10px"><input style="width: 250px; margin-left: 0px; margin-right: 0px" type="range" min="0" max="1" step="0.01" id="ldavis_el17821336212633986407976299584-lambda" list="ticks"><svg width="250" height="25"><g class="slideraxis" margin-top="-10px" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M8,10V0.5H243V10"></path><g class="tick" opacity="1" transform="translate(8,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.0</text></g><g class="tick" opacity="1" transform="translate(55,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.2</text></g><g class="tick" opacity="1" transform="translate(102,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.4</text></g><g class="tick" opacity="1" transform="translate(149,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.6</text></g><g class="tick" opacity="1" transform="translate(196,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">0.8</text></g><g class="tick" opacity="1" transform="translate(243,0)"><line stroke="currentColor" y2="10"></line><text fill="currentColor" y="13" dy="0.71em">1.0</text></g></g></svg></div><label id="ldavis_el17821336212633986407976299584-lamlabel" for="ldavis_el17821336212633986407976299584-lambda" style="height: 20px; width: 60px; font-family: sans-serif; font-size: 14px; margin-left: 80px">λ = <span id="ldavis_el17821336212633986407976299584-lambda-value">1</span></label></div></div><svg width="1210" height="780"><g id="ldavis_el17821336212633986407976299584-leftpanel" class="points" transform="translate(30,60)"><rect x="0" y="0" height="530" width="530" opacity="0" style="fill: rgb(31, 119, 180);"></rect><line x1="0" x2="530" y1="265" y2="265" stroke="gray" opacity="0.3"></line><text x="0" y="260" fill="gray">PC1</text><line x1="265" x2="265" y1="0" y2="530" stroke="gray" opacity="0.3"></line><text x="270" y="7" fill="gray">PC2</text><circle class="circleGuideSmall" r="21.143940861275933" cx="57.279289078048436" cy="551.143940861276" style="fill: none; stroke-dasharray: 2, 2; stroke: rgb(153, 153, 153);"></circle><line class="lineGuideSmall" x1="57.279289078048436" x2="128.1982226951211" y1="572.2878817225519" y2="572.2878817225519" style="stroke: gray; opacity: 0.3;"></line><circle class="circleGuideMedium" r="33.43150591676712" cx="57.279289078048436" cy="563.4315059167672" style="fill: none; stroke-dasharray: 2, 2; stroke: rgb(153, 153, 153);"></circle><line class="lineGuideMedium" x1="57.279289078048436" x2="128.1982226951211" y1="596.8630118335343" y2="596.8630118335343" style="stroke: gray; opacity: 0.3;"></line><circle class="circleGuideLarge" r="47.279289078048436" cx="57.279289078048436" cy="577.2792890780485" style="fill: none; stroke-dasharray: 2, 2; stroke: rgb(153, 153, 153);"></circle><line class="lineGuideLarge" x1="57.279289078048436" x2="128.1982226951211" y1="624.5585781560969" y2="624.5585781560969" style="stroke: gray; opacity: 0.3;"></line><text x="10" y="520" class="circleGuideTitle">Marginal topic distribution</text><text x="138.1982226951211" y="572.2878817225519" class="circleGuideLabelSmall" style="text-anchor: start;">2%</text><text x="138.1982226951211" y="596.8630118335343" class="circleGuideLabelMedium" style="text-anchor: start;">5%</text><text x="138.1982226951211" y="624.5585781560969" class="circleGuideLabelLarge" style="text-anchor: start;">10%</text><text class="txt" x="505.9090909090909" y="365.9319119535779" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">1</text><text class="txt" x="24.09090909090911" y="395.5795116447479" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">2</text><text class="txt" x="220.41300418837224" y="142.42048835525208" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">3</text><text class="txt" x="269.51629946545154" y="289.7068245881626" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">4</text><text class="txt" x="261.5501385078508" y="341.5350373239567" stroke="black" opacity="1" style="text-anchor: middle; font-size: 11px;">5</text><circle class="dot" r="96.27897736251298" cx="505.9090909090909" cy="361.9319119535779" stroke="black" id="ldavis_el17821336212633986407976299584-topic1" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle><circle class="dot" r="91.72561052166168" cx="24.09090909090911" cy="391.5795116447479" stroke="black" id="ldavis_el17821336212633986407976299584-topic2" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle><circle class="dot" r="54.703445092253446" cx="220.41300418837224" cy="138.42048835525208" stroke="black" id="ldavis_el17821336212633986407976299584-topic3" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle><circle class="dot" r="40.14512452993682" cx="269.51629946545154" cy="285.7068245881626" stroke="black" id="ldavis_el17821336212633986407976299584-topic4" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle><circle class="dot" r="8.123098006827057" cx="261.5501385078508" cy="337.5350373239567" stroke="black" id="ldavis_el17821336212633986407976299584-topic5" style="opacity: 0.2; fill: rgb(31, 119, 180);"></circle></g><text x="295" y="30" style="font-size: 16px; text-anchor: middle;">Intertopic Distance Map (via multidimensional scaling)</text><g transform="translate(650,60)" id="ldavis_el17821336212633986407976299584-bar-freqs"><rect x="0" y="540" height="15" width="100" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><text x="105" y="547.5" style="dominant-baseline: middle;">Overall term frequency</text><rect x="0" y="560" height="15" width="50" opacity="0.8" style="fill: rgb(214, 39, 40);"></rect><text x="55" y="567.5" style="dominant-baseline: middle;">Estimated term frequency within the selected topic</text><a href="http://vis.stanford.edu/files/2012-Termite-AVI.pdf" target="_blank"><text x="0" y="590" style="dominant-baseline: middle;">1. saliency(term w) = frequency(w) * [sum_t p(t | w) * log(p(t | w)/p(t))] for topics t; see Chuang et. al (2012)</text></a><a href="http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf" target="_blank"><text x="0" y="605" style="dominant-baseline: middle;">2. relevance(term w | topic t) = λ * p(w | t) + (1 - λ) * p(w | t)/p(w); see Sievert &amp; Shirley (2014)</text></a><rect class="bar-totals" x="0" y="11" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="28" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="45" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="62" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="79" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="96" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="113" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="130" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="147" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="164" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="181" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="198" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="215" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="232" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="249" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="266" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="283" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="300" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="317" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="334" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="351" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="368" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="385" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="402" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="419" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="436" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="453" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="470" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="487" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><rect class="bar-totals" x="0" y="504" height="14" width="265" opacity="0.4" style="fill: rgb(31, 119, 180);"></rect><text x="-5" class="terms" y="23" cursor="pointer" id="ldavis_el17821336212633986407976299584-termbook" style="text-anchor: end;">new</text><text x="-5" class="terms" y="40" cursor="pointer" id="ldavis_el17821336212633986407976299584-termromantasy" style="text-anchor: end;">love</text><text x="-5" class="terms" y="57" cursor="pointer" id="ldavis_el17821336212633986407976299584-termromance" style="text-anchor: end;">offer</text><text x="-5" class="terms" y="74" cursor="pointer" id="ldavis_el17821336212633986407976299584-termgenre" style="text-anchor: end;">heat</text><text x="-5" class="terms" y="91" cursor="pointer" id="ldavis_el17821336212633986407976299584-termchinese" style="text-anchor: end;">plenty</text><text x="-5" class="terms" y="108" cursor="pointer" id="ldavis_el17821336212633986407976299584-termweek" style="text-anchor: end;">genre</text><text x="-5" class="terms" y="125" cursor="pointer" id="ldavis_el17821336212633986407976299584-termyet" style="text-anchor: end;">romance</text><text x="-5" class="terms" y="142" cursor="pointer" id="ldavis_el17821336212633986407976299584-termgiant" style="text-anchor: end;">romantasy</text><text x="-5" class="terms" y="159" cursor="pointer" id="ldavis_el17821336212633986407976299584-termadult" style="text-anchor: end;">marriage</text><text x="-5" class="terms" y="176" cursor="pointer" id="ldavis_el17821336212633986407976299584-termtiktok" style="text-anchor: end;">show</text><text x="-5" class="terms" y="193" cursor="pointer" id="ldavis_el17821336212633986407976299584-termpopular" style="text-anchor: end;">difference</text><text x="-5" class="terms" y="210" cursor="pointer" id="ldavis_el17821336212633986407976299584-termexample" style="text-anchor: end;">commonality</text><text x="-5" class="terms" y="227" cursor="pointer" id="ldavis_el17821336212633986407976299584-termowns" style="text-anchor: end;">every</text><text x="-5" class="terms" y="244" cursor="pointer" id="ldavis_el17821336212633986407976299584-termbytedance" style="text-anchor: end;">end</text><text x="-5" class="terms" y="261" cursor="pointer" id="ldavis_el17821336212633986407976299584-termsold" style="text-anchor: end;">two</text><text x="-5" class="terms" y="278" cursor="pointer" id="ldavis_el17821336212633986407976299584-termmillion" style="text-anchor: end;">memoir</text><text x="-5" class="terms" y="295" cursor="pointer" id="ldavis_el17821336212633986407976299584-termpatterned" style="text-anchor: end;">york</text><text x="-5" class="terms" y="312" cursor="pointer" id="ldavis_el17821336212633986407976299584-termnote" style="text-anchor: end;">cole</text><text x="-5" class="terms" y="329" cursor="pointer" id="ldavis_el17821336212633986407976299584-termedge" style="text-anchor: end;">reading</text><text x="-5" class="terms" y="346" cursor="pointer" id="ldavis_el17821336212633986407976299584-termtrend" style="text-anchor: end;">time</text><text x="-5" class="terms" y="363" cursor="pointer" id="ldavis_el17821336212633986407976299584-termseries" style="text-anchor: end;">critic</text><text x="-5" class="terms" y="380" cursor="pointer" id="ldavis_el17821336212633986407976299584-termpress" style="text-anchor: end;">hibbert</text><text x="-5" class="terms" y="397" cursor="pointer" id="ldavis_el17821336212633986407976299584-termprovided" style="text-anchor: end;">talia</text><text x="-5" class="terms" y="414" cursor="pointer" id="ldavis_el17821336212633986407976299584-termstaying" style="text-anchor: end;">banter</text><text x="-5" class="terms" y="431" cursor="pointer" id="ldavis_el17821336212633986407976299584-term8th" style="text-anchor: end;">suggested</text><text x="-5" class="terms" y="448" cursor="pointer" id="ldavis_el17821336212633986407976299584-termtech" style="text-anchor: end;">editor</text><text x="-5" class="terms" y="465" cursor="pointer" id="ldavis_el17821336212633986407976299584-termthroughout" style="text-anchor: end;">heartwarming</text><text x="-5" class="terms" y="482" cursor="pointer" id="ldavis_el17821336212633986407976299584-termfocus" style="text-anchor: end;">alyssa</text><text x="-5" class="terms" y="499" cursor="pointer" id="ldavis_el17821336212633986407976299584-termfirst" style="text-anchor: end;">emotional</text><text x="-5" class="terms" y="516" cursor="pointer" id="ldavis_el17821336212633986407976299584-termfantasy" style="text-anchor: end;">casey</text><g x="xaxis" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,0.5H530.5"></path><g class="tick" opacity="1" transform="translate(265.5,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-3" dy="0em">1</text></g></g><text x="265" y="-30" class="bubble-tool" style="text-anchor: middle; font-size: 16px;">Top-30 Most Salient Terms<tspan baseline-shift="super" font-size="12">1</tspan></text></g></svg></div>
+<script type="text/javascript">
+
+var ldavis_el17821336212633986407976299584_data = {"mdsDat": {"x": [0.13275843224143305, -0.12349975365943508, -0.019084549251648306, 0.007031363024587385, 0.0027945076450628294], "y": [-0.03132484248897204, -0.04709311442197545, 0.08755118606455665, 0.009215974245435805, -0.01834920339904488], "topics": [1, 2, 3, 4, 5], "cluster": [1, 1, 1, 1, 1], "Freq": [41.46876124054425, 37.639110110116974, 13.38713000318498, 7.209808734497434, 0.2951899116563641]}, "tinfo": {"Term": ["new", "love", "offer", "heat", "plenty", "genre", "romance", "romantasy", "marriage", "show", "difference", "commonality", "every", "end", "two", "memoir", "york", "cole", "reading", "time", "critic", "hibbert", "talia", "banter", "suggested", "editor", "heartwarming", "alyssa", "emotional", "casey", "romantasy", "romance", "genre", "chinese", "week", "yet", "giant", "adult", "tiktok", "popular", "example", "owns", "bytedance", "sold", "million", "patterned", "note", "edge", "trend", "series", "press", "provided", "staying", "8th", "tech", "throughout", "focus", "first", "fantasy", "elaborately", "book", "another", "copy", "new", "love", "older", "romcom", "got", "jane", "fabulous", "british", "adaptation", "covered", "daria", "heroine", "tale", "austen", "weve", "mood", "story", "casey", "whether", "youre", "mcquiston", "alexis", "emotional", "forgiveness", "racist", "april", "advance", "novel", "praised", "found", "lark", "book", "plenty", "offer", "heat", "another", "alyssa", "banter", "critic", "hibbert", "heartwarming", "talia", "suggested", "editor", "cole", "reading", "time", "york", "offer", "heat", "plenty", "new", "book", "two", "memoir", "end", "commonality", "every", "marriage", "difference", "show", "elon", "sophie", "passage", "reader", "due", "vine", "bloom", "sparrow", "musk", "criticized", "lark", "found", "praised", "copy", "difference", "every", "marriage", "show", "commonality", "end", "memoir", "two", "new", "york", "cole", "reading", "editor", "suggested", "heartwarming", "critic", "time", "banter", "hibbert", "alyssa", "talia", "elon", "sophie", "passage", "reader", "due", "vine", "bloom", "sparrow", "musk", "lark", "mcquiston", "emotional", "columnist", "youre", "alexis", "release", "month", "forgiveness", "book", "heat", "plenty", "offer", "romance", "genre", "designed", "two", "marriage", "memoir", "end", "show", "commonality", "difference", "every", "york", "reading", "cole", "time", "editor", "suggested", "talia", "critic", "hibbert", "heartwarming", "banter", "alyssa", "elon", "sophie", "passage", "reader", "due", "vine", "bloom", "sparrow", "musk", "criticized", "lark", "found", "emotional", "release", "forgiveness", "columnist", "month", "casey", "new", "book", "heat", "offer", "plenty", "copy", "publishing", "designed", "another", "started", "genre", "love"], "Freq": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.5366209250719962, 1.5366134697143237, 1.5366116058749055, 0.8381735892685002, 0.838167016782131, 0.8381662320076392, 0.8381644662650326, 0.8381631910064833, 0.8381612290702537, 0.8381583842627208, 0.8381575994882289, 0.8381558337456223, 0.8381532832285238, 0.8381556375519993, 0.8381556375519993, 0.8381515174859171, 0.8381485745815728, 0.8381515174859171, 0.8381497517433105, 0.8381483783879498, 0.8381468088389661, 0.838147397419835, 0.8381467107421546, 0.8381465145485316, 0.8381452392899824, 0.8381468088389661, 0.8381471031294006, 0.8381489669688187, 0.8381466126453432, 0.838144748805925, 1.5368276150537852, 0.8381969363096325, 0.838179475077189, 0.8381611309734422, 1.4998491959255094, 0.8181131113093756, 0.8181103511454854, 0.8181102621079405, 0.8181067896436914, 0.8181018035411799, 0.8180985981895653, 0.8180926326740605, 0.8180969955137581, 0.8180870233087351, 0.818088269834363, 0.8180864000459211, 0.8180816810560442, 0.8180816810560442, 0.8180855987080176, 0.8180785647419745, 0.8180741128647321, 0.8180780305167054, 0.8180695719499448, 0.8180629831716261, 0.8180656542979715, 0.8180525657788787, 0.8180538123045067, 0.8112116331330943, 0.8102716637721308, 0.8097009331096532, 0.8095923073049384, 0.8093511045959443, 0.8085070286707824, 0.8079951518254496, 1.4931046019032508, 0.8181336789822355, 0.8180785647419745, 0.8180782976293399, 0.8180778524416157, 0.5140349817216977, 0.5140317832487359, 0.5140148091744041, 0.5140150625187971, 0.5140111040126563, 0.5140016035979182, 0.5139983417888583, 0.5139934332412436, 0.5139855162289619, 0.5139788659386454, 0.5139813043784281, 0.5139342773254751, 0.5140394785846737, 0.5140190210249379, 0.5140097106184947, 0.513984756195783, 0.5182132957915101, 0.08570552936785943, 0.08570335218948197, 0.08570115917707995, 0.0856976440236269, 0.08569621104440392, 0.0856942792934072, 0.08569334508595797, 0.08569189627271043, 0.09452178757250758, 0.09389871870594178, 0.0936245367366037, 0.09322767274494918, 0.09289003592217368, 0.09275049066369734, 0.09262431723896469, 0.09258577722317762, 0.092329598539768, 0.09217399758038448, 0.09203342311031151, 0.09171515921658921, 0.09119150427324409, 0.09278692475421749, 0.34986692287416926, 0.34986518324074006, 0.3498589751371301, 0.3498591115789677, 0.3498561780794597, 0.3498514708360631, 0.3498504134118219, 0.34984594494164106, 0.34988697982429373, 0.058338769071780414, 0.058334368822518405, 0.05833338388300337, 0.05833236909683635, 0.05833144385062525, 0.05833063799102203, 0.05832987050568564, 0.058329657315314414, 0.058327504092565076, 0.05832749556495023, 0.05832701375471127, 0.05832679630053263, 0.05832406746378099, 0.058327904890462974, 0.058323410837437625, 0.05832475393677632, 0.05832586252670668, 0.05832483068530996, 0.05832406746378099, 0.058323572862119755, 0.05832350037739354, 0.058324583384479343, 0.05833173378953011, 0.05833074458620764, 0.05835275436013254, 0.058329580566780774, 0.05832955498393623, 0.05834609429293559, 0.05834003115877805, 0.05832906464608242, 0.05835505255233431, 0.058343621284629416, 0.058342593707040126, 0.0583385729366389, 0.058331968298938455, 0.058331234924061455, 0.05832978096572972, 0.00334759435101537, 0.0033475395353112715, 0.003347421524432384, 0.0033473946402972528, 0.0033473478549192323, 0.003347279422575262, 0.0033471998176037047, 0.00334713732071814, 0.0033483924955986155, 0.0033478282779054727, 0.0033477975531796085, 0.003347686874337575, 0.0033474494560013514, 0.0033473970843095374, 0.003347406162069452, 0.003347354488666862, 0.0033472822157321587, 0.0033472514910062945, 0.0033470709832418423, 0.003346950877495282, 0.003347036068780633, 0.0033472808191537104, 0.003346983697088819, 0.0033470975182323614, 0.003346950877495282, 0.003346939355723083, 0.0033469585586767482, 0.003346999059451751, 0.0033470566683127465, 0.0033469585586767482, 0.0033470762204110237, 0.003347024547008434, 0.003347384864248114, 0.0033484309015059457, 0.003347289896913625, 0.003348087692352258, 0.0033480786145923436, 0.0033472445081140527, 0.00334980932443449, 0.0033489095787691257, 0.003347994121596217, 0.0033478153595548252, 0.003347679891445333, 0.0033475995881845516, 0.003347556992541876, 0.0033473866099711746, 0.0033473569326791467, 0.0033473440143284993, 0.0033473335399901365, 0.0033473265570978946], "Total": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.8203857214744632, 1.8203786554565922, 1.8203765194198565, 1.12189945655013, 1.1218944000364417, 1.1218951173815985, 1.1218940143194625, 1.121894574182945, 1.1218922061770351, 1.1218914302858316, 1.1218922470042108, 1.121890513214279, 1.1218876221642788, 1.1218908987777794, 1.121891966848306, 1.121888481250571, 1.1218853279135046, 1.1218896010491526, 1.121887371928171, 1.1218856511270165, 1.121883636490139, 1.1218848923506406, 1.1218844073683922, 1.1218843507549259, 1.1218830304278151, 1.1218853757235678, 1.1218859281114892, 1.1218886162537527, 1.1218868631142116, 1.1218845593850333, 3.6098494748796495, 1.8036555485761065, 1.7994552981855503, 1.8418540828087344, 1.7869569154814138, 1.105184775845034, 1.105182546809561, 1.1051841279639028, 1.105179563571062, 1.1051781739875148, 1.1051758477730735, 1.1051699474480103, 1.1051772178095698, 1.105166281537604, 1.1051698161676404, 1.1051736823990304, 1.1051679647736157, 1.1051696900058798, 1.1051764646074822, 1.105167947656786, 1.1051626614375443, 1.1051680474072847, 1.1051617682558856, 1.105157161027377, 1.1051629239509566, 1.1051499486780143, 1.105154864311797, 1.102615245108263, 1.1022670080546604, 1.102055044760012, 1.102016463603909, 1.1019255552667921, 1.101612410374799, 1.1014202833823297, 3.6098494748796495, 1.5335689906192818, 1.5335516164949956, 1.5335499505830759, 1.8036555485761065, 0.8518082894056389, 0.8518046305591243, 0.8518003868473949, 0.8518062937314658, 0.8518054279782313, 0.8518103009533545, 0.8518065180117986, 0.8518060186531116, 0.851793863160098, 0.8517982650851943, 0.8518074021805241, 0.8517948596665, 1.5335516164949956, 1.5335499505830759, 1.5335689906192818, 1.8418540828087344, 3.6098494748796495, 0.7150229231687538, 0.7150250558060447, 0.7150262615423127, 0.7150267897888718, 0.7150209550059883, 0.7150143245375127, 0.7150180264682865, 0.7150235539763287, 1.0999501735998243, 1.1003037214013507, 1.1004840544368117, 1.1007126151546618, 1.1009166942090483, 1.1010011551652374, 1.1010759830739247, 1.1010979745471485, 1.10124723326404, 1.1013425991425656, 1.1014202833823297, 1.101612410374799, 1.1019255552667921, 1.7994552981855503, 0.7150180264682865, 0.7150209550059883, 0.7150143245375127, 0.7150235539763287, 0.7150267897888718, 0.7150262615423127, 0.7150250558060447, 0.7150229231687538, 1.8418540828087344, 0.8517948596665, 0.851793863160098, 0.8517982650851943, 0.8518060186531116, 0.8518065180117986, 0.8518054279782313, 0.8518003868473949, 0.8518074021805241, 0.8518046305591243, 0.8518062937314658, 0.8518082894056389, 0.8518103009533545, 1.0999501735998243, 1.1003037214013507, 1.1004840544368117, 1.1007126151546618, 1.1009166942090483, 1.1010011551652374, 1.1010759830739247, 1.1010979745471485, 1.10124723326404, 1.1014202833823297, 1.105157161027377, 1.1051499486780143, 1.1217764188324053, 1.1051617682558856, 1.1051629239509566, 1.1217653488470647, 1.1217997491502514, 1.105154864311797, 3.6098494748796495, 1.5335499505830759, 1.5335689906192818, 1.5335516164949956, 1.8203786554565922, 1.8203765194198565, 1.121859721874915, 0.7150229231687538, 0.7150143245375127, 0.7150250558060447, 0.7150262615423127, 0.7150235539763287, 0.7150267897888718, 0.7150180264682865, 0.7150209550059883, 0.8517948596665, 0.8517982650851943, 0.851793863160098, 0.8518074021805241, 0.8518060186531116, 0.8518065180117986, 0.8518103009533545, 0.8518003868473949, 0.8518062937314658, 0.8518054279782313, 0.8518046305591243, 0.8518082894056389, 1.0999501735998243, 1.1003037214013507, 1.1004840544368117, 1.1007126151546618, 1.1009166942090483, 1.1010011551652374, 1.1010759830739247, 1.1010979745471485, 1.10124723326404, 1.1013425991425656, 1.1014202833823297, 1.101612410374799, 1.1051499486780143, 1.1217653488470647, 1.105154864311797, 1.1217764188324053, 1.1217997491502514, 1.1051626614375443, 1.8418540828087344, 3.6098494748796495, 1.5335499505830759, 1.5335516164949956, 1.5335689906192818, 1.7994552981855503, 1.1218556401557844, 1.121859721874915, 1.8036555485761065, 1.1218645180590505, 1.8203765194198565, 1.7869569154814138], "Category": ["Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5", "Topic5"], "logprob": [30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, -3.5344, -3.5344, -3.5344, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -4.1405, -3.5342, -4.1405, -4.1405, -4.1405, -3.4617, -4.0678, -4.0678, -4.0678, -4.0678, -4.0678, -4.0678, -4.0678, -4.0678, -4.0678, -4.0678, -4.0678, -4.0679, -4.0679, -4.0678, -4.0679, -4.0679, -4.0679, -4.0679, -4.0679, -4.0679, -4.0679, -4.0679, -4.0763, -4.0774, -4.0782, -4.0783, -4.0786, -4.0796, -4.0803, -3.4662, -4.0678, -4.0679, -4.0679, -4.0679, -3.4988, -3.4988, -3.4988, -3.4988, -3.4988, -3.4988, -3.4988, -3.4989, -3.4989, -3.4989, -3.4989, -3.499, -3.4988, -3.4988, -3.4988, -3.4989, -3.4907, -5.2901, -5.2902, -5.2902, -5.2902, -5.2903, -5.2903, -5.2903, -5.2903, -5.1922, -5.1988, -5.2018, -5.206, -5.2096, -5.2112, -5.2125, -5.2129, -5.2157, -5.2174, -5.2189, -5.2224, -5.2281, -5.2108, -3.2647, -3.2647, -3.2647, -3.2647, -3.2647, -3.2647, -3.2647, -3.2647, -3.2646, -5.0559, -5.056, -5.056, -5.0561, -5.0561, -5.0561, -5.0561, -5.0561, -5.0561, -5.0561, -5.0561, -5.0562, -5.0562, -5.0561, -5.0562, -5.0562, -5.0562, -5.0562, -5.0562, -5.0562, -5.0562, -5.0562, -5.0561, -5.0561, -5.0557, -5.0561, -5.0561, -5.0558, -5.0559, -5.0561, -5.0557, -5.0559, -5.0559, -5.056, -5.0561, -5.0561, -5.0561, -4.7184, -4.7184, -4.7184, -4.7185, -4.7185, -4.7185, -4.7185, -4.7185, -4.7182, -4.7183, -4.7183, -4.7184, -4.7184, -4.7185, -4.7185, -4.7185, -4.7185, -4.7185, -4.7186, -4.7186, -4.7186, -4.7185, -4.7186, -4.7185, -4.7186, -4.7186, -4.7186, -4.7186, -4.7186, -4.7186, -4.7185, -4.7186, -4.7185, -4.7181, -4.7185, -4.7182, -4.7182, -4.7185, -4.7177, -4.718, -4.7183, -4.7183, -4.7184, -4.7184, -4.7184, -4.7185, -4.7185, -4.7185, -4.7185, -4.7185], "loglift": [30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 0.7108, 0.7108, 0.7108, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.5887, 0.0263, 0.1139, 0.1162, 0.0929, 0.802, 0.6764, 0.6764, 0.6764, 0.6764, 0.6764, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6763, 0.6702, 0.6694, 0.6689, 0.6688, 0.6685, 0.6678, 0.6673, 0.0943, 0.3488, 0.3487, 0.3487, 0.1865, 1.5058, 1.5058, 1.5058, 1.5058, 1.5058, 1.5057, 1.5057, 1.5057, 1.5057, 1.5057, 1.5057, 1.5056, 0.9178, 0.9178, 0.9178, 0.7345, 0.0698, -0.1105, -0.1105, -0.1106, -0.1106, -0.1106, -0.1106, -0.1107, -0.1107, -0.4433, -0.4502, -0.4533, -0.4578, -0.4616, -0.4632, -0.4646, -0.4651, -0.468, -0.4697, -0.4713, -0.475, -0.481, -0.9541, 1.915, 1.915, 1.915, 1.9149, 1.9149, 1.9149, 1.9149, 1.9149, 0.9688, -0.0514, -0.0514, -0.0514, -0.0515, -0.0515, -0.0515, -0.0515, -0.0515, -0.0516, -0.0516, -0.0516, -0.0516, -0.3073, -0.3075, -0.3078, -0.308, -0.3081, -0.3082, -0.3083, -0.3083, -0.3085, -0.3086, -0.3119, -0.3119, -0.3264, -0.3119, -0.3119, -0.3265, -0.3267, -0.3119, -1.4951, -0.6393, -0.6393, -0.6394, -0.8109, -0.8109, -0.3269, 0.4612, 0.4612, 0.4612, 0.4612, 0.4612, 0.4611, 0.4611, 0.4611, 0.2864, 0.2863, 0.2863, 0.2862, 0.2861, 0.2861, 0.2861, 0.2861, 0.2861, 0.2861, 0.286, 0.286, 0.0304, 0.0301, 0.0299, 0.0297, 0.0295, 0.0294, 0.0293, 0.0293, 0.0292, 0.0291, 0.029, 0.0288, 0.0257, 0.0111, 0.0257, 0.011, 0.011, 0.0257, -0.4843, -1.1575, -0.3017, -0.3017, -0.3018, -0.4617, 0.0108, 0.0107, -0.4641, 0.0107, -0.4733, -0.4548]}, "token.table": {"Topic": [1, 2, 1, 2, 2, 3, 1, 2, 2, 2, 3, 2, 1, 2, 3, 2, 1, 2, 1, 3, 1, 1, 2, 2, 3, 2, 2, 1, 2, 1, 3, 1, 2, 2, 1, 2, 1, 1, 1, 2, 2, 1, 1, 2, 3, 2, 3, 2, 3, 2, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 2, 2, 3, 2, 1, 2, 1, 2, 3, 1, 2, 1, 1, 1, 2, 2, 3, 1, 1, 1, 2, 1, 1, 2, 2, 1, 1, 2, 3, 2, 3, 1, 1, 1, 3, 1, 2, 1, 2, 2, 1, 3, 2], "Freq": [0.891357473100584, 0.9048382127193539, 0.8913493504755395, 0.9073956920343885, 0.9048439631190311, 1.1739730787285059, 0.5544295865080495, 0.5544295865080495, 0.9072212020251367, 0.9048398360016177, 1.1739781214192277, 0.9082025358579285, 0.5540397221318152, 0.2770198610659076, 0.2770198610659076, 0.9048333819590768, 0.8913548739140731, 0.9048441780499953, 0.8913454714338004, 1.1739929615013511, 0.8914432352222597, 0.5557237242894184, 0.5557237242894184, 0.9048322602794617, 1.1739839702363928, 0.9079826756710724, 0.9048412141281695, 0.8913770416222305, 0.9083339413964, 0.891353301666077, 1.1739762083170238, 0.8913573073402089, 0.9091320897993809, 0.904854586652431, 0.8913511994314074, 0.9048314774367748, 0.8913554769900153, 0.8913540840972546, 0.8913562198639355, 0.9048505619370557, 0.9077602889929066, 1.098673806580074, 0.89134979528935, 0.9048266028234725, 1.1739770223976032, 0.6520817920666926, 0.6520817920666926, 0.9048383202028316, 1.173975829198619, 0.90483033975836, 0.9079186347732038, 0.5596105822901699, 0.9048486814946567, 0.8913514220172793, 0.8914246956798545, 0.9048328769425641, 0.9080613052130462, 0.5429311742627573, 0.5429311742627573, 0.891356696731039, 0.9074274595950356, 0.6520810837039493, 0.6520810837039493, 0.9048260723962572, 0.8913525769417054, 0.9086910400639691, 0.8913541913589293, 0.6520736961407798, 0.6520736961407798, 0.891351848320317, 0.9075023219312538, 0.8913580405972787, 0.8913570427931692, 0.8913802847763344, 0.9069346759320497, 0.908502352232503, 1.1739868945377379, 0.891452032305853, 1.098672517393561, 1.0986682527810943, 0.9048278973340632, 0.8913564399325604, 0.8913522706079791, 0.9088399689554776, 0.9081843969527531, 0.8913732308158836, 0.8913574281201601, 0.9048398500157677, 1.173975520091229, 0.9048351548050556, 1.1739703063942641, 0.8913585221256652, 0.891356658745144, 0.8913512318688838, 1.1739743015147799, 0.8913550727300861, 0.908264260494732, 0.8913494888355961, 0.9048384234955626, 0.9048397683465351, 0.8913489189024276, 1.1739915880585687, 0.9048449093368051], "Term": ["8th", "adaptation", "adult", "advance", "alexis", "alyssa", "another", "another", "april", "austen", "banter", "bloom", "book", "book", "book", "british", "bytedance", "casey", "chinese", "cole", "columnist", "copy", "copy", "covered", "critic", "criticized", "daria", "designed", "due", "edge", "editor", "elaborately", "elon", "emotional", "example", "fabulous", "fantasy", "first", "focus", "forgiveness", "found", "genre", "giant", "got", "heartwarming", "heat", "heat", "heroine", "hibbert", "jane", "lark", "love", "mcquiston", "million", "month", "mood", "musk", "new", "new", "note", "novel", "offer", "offer", "older", "owns", "passage", "patterned", "plenty", "plenty", "popular", "praised", "press", "provided", "publishing", "racist", "reader", "reading", "release", "romance", "romantasy", "romcom", "series", "sold", "sophie", "sparrow", "started", "staying", "story", "suggested", "tale", "talia", "tech", "throughout", "tiktok", "time", "trend", "vine", "week", "weve", "whether", "yet", "york", "youre"]}, "R": 30, "lambda.step": 0.01, "plot.opts": {"xlab": "PC1", "ylab": "PC2"}, "topic.order": [4, 1, 2, 5, 3]};
+
+function LDAvis_load_lib(url, callback){
+  var s = document.createElement('script');
+  s.src = url;
+  s.async = true;
+  s.onreadystatechange = s.onload = callback;
+  s.onerror = function(){console.warn("failed to load library " + url);};
+  document.getElementsByTagName("head")[0].appendChild(s);
+}
+
+if(typeof(LDAvis) !== "undefined"){
+   // already loaded: just create the visualization
+   !function(LDAvis){
+       new LDAvis("#" + "ldavis_el17821336212633986407976299584", ldavis_el17821336212633986407976299584_data);
+   }(LDAvis);
+}else if(typeof define === "function" && define.amd){
+   // require.js is available: use it to load d3/LDAvis
+   require.config({paths: {d3: "https://d3js.org/d3.v5"}});
+   require(["d3"], function(d3){
+      window.d3 = d3;
+      LDAvis_load_lib("https://cdn.jsdelivr.net/gh/bmabey/pyLDAvis@3.4.0/pyLDAvis/js/ldavis.v3.0.0.js", function(){
+        new LDAvis("#" + "ldavis_el17821336212633986407976299584", ldavis_el17821336212633986407976299584_data);
+      });
+    });
+}else{
+    // require.js not available: dynamically load d3 & LDAvis
+    LDAvis_load_lib("https://d3js.org/d3.v5.js", function(){
+         LDAvis_load_lib("https://cdn.jsdelivr.net/gh/bmabey/pyLDAvis@3.4.0/pyLDAvis/js/ldavis.v3.0.0.js", function(){
+                 new LDAvis("#" + "ldavis_el17821336212633986407976299584", ldavis_el17821336212633986407976299584_data);
+            })
+         });
+}
+</script></div></div></div><span id="output-footer"></span></div></body></html>
